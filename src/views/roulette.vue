@@ -5,11 +5,11 @@
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
   <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
   <div class="w-full relative">
-    <div class="absolute -left-12 -top-5 flex items-start md:hidden">
-      <img class="w-40 rotate-12" src="../assets/GATO.png" alt="gato" />
-      <div class="-translate-x-14 translate-y-5 relative">
+    <div class="absolute -left-20 -top-10 flex items-start md:hidden">
+      <img class="w-52 rotate-12" src="../assets/GATO.png" alt="gato" />
+      <div class="-translate-x-14 translate-y-10 relative">
         <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
-        <p class="font-trash-hand text-center w-48 mt-1 translate-x-2">Gira la ruleta y escoge<br>castigo o trago</p>
+        <p class="font-trash-hand text-center w-48 mt-3 ml-1 translate-x-2 leading-4 text-lg">Gira la ruleta y escoge<br>castigo o trago</p>
       </div>
     </div>
     <div class="hidden md:flex w-full absolute justify-between items-center">
@@ -29,7 +29,7 @@
       <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
         <div class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent border-b-primary-green absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"></div>
         <button
-          class="w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand bg-primary-green rounded-full border-2 border-white text-white cursor-pointer"
+          class="shadow-xl w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand bg-primary-green rounded-full border-4 border-white text-white cursor-pointer"
           :disabled="rotating"
         >
           Girar
@@ -55,23 +55,24 @@
         leave-active-class="duration-500"
         leave-to-class="opacity-0"
       >
-        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center cursor-pointer">
-          <img class="w-2/3" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
-          <img class="w-2/3 mx-auto" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
+        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center justify-center cursor-pointer relative">
+          <img class="w-2/3 mx-auto absolute" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
           <span
-            class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen"
+            style="line-height: .75"
+            class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen 2xl:text-2xl-screen"
             :class="store.state.mode == 'hot' ? 'text-white': null"
           >
             {{ dare }}
           </span>
-          <div class="w-2/3 bg-cover bg-no-repeat mt-8" :style="{backgroundImage: `url(${dareBg})`}">
-            <p class="font-trash-hand text-2xl md:text-4xl xl:text-7xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
+          <div class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mt-8 absolute bottom-7 md:bottom-12" :style="{backgroundImage: `url(${dareBg})`}">
+            <p class="font-trash-hand text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
           </div>
         </div>
       </transition>
     </div>
   </div>
-  <div @click="changeLevel" class="relative w-44 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden">
+  <div @click="changeLevel" class="w-44 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden absolute bottom-5 left-1/2 -translate-x-1/2">
     <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
     <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-xl md:text-3xl block text-white">Cambia de nivel</p>
   </div>
@@ -94,7 +95,7 @@ import { bgColor } from '../common'
 const store = inject('store')
 const router = useRouter()
 
-const showDare = ref(false)
+const showDare = ref(true)
 const rotating = ref(false)
 
 const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]

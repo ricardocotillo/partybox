@@ -7,9 +7,10 @@ module.exports = {
     extend: {
       fontSize: {
         'sm-screen': '10rem',
-        'md-screen': '10rem',
+        'md-screen': '14rem',
         'lg-screen': '10rem',
         'xl-screen': '17rem',
+        '2xl-screen': '19rem',
       },
       backgroundSize: {
         16: '4rem',
