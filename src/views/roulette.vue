@@ -95,7 +95,7 @@ import { bgColor } from '../common'
 const store = inject('store')
 const router = useRouter()
 
-const showDare = ref(true)
+const showDare = ref(false)
 const rotating = ref(false)
 
 const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
