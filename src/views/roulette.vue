@@ -2,6 +2,7 @@
   <div class="w-full shadow-md lg:hidden">
     <img class="w-16 lg:w-32 mx-auto pb-6 pt-12 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
+  <span>-{{angle}}</span>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
   <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
   <div class="w-full relative">
@@ -36,7 +37,7 @@
         </button>
       </div>
       <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(${angle}deg)`}" />
-      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(${angle}deg)`}" />
+      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <transition
         enter-from-class="scale-0"
         enter-active-class="duration-500"
@@ -55,7 +56,7 @@
         leave-active-class="duration-500"
         leave-to-class="opacity-0"
       >
-        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center">
+        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center cursor-pointer">
           <img class="w-2/3" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
           <img class="w-2/3 mx-auto" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
           <span
@@ -95,7 +96,7 @@ const router = useRouter()
 const showDare = ref(false)
 const rotating = ref(false)
 
-const slots = [1, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 const punishments = ['02 secos', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos']
 const trench = 360 / slots.length
 const angle = ref(0)
@@ -112,7 +113,7 @@ const spin = () => {
   delay += 0.1
   if (angle.value >= end) {
     start = angle.value
-    end = start + (360 / (loopCount + 0.4))
+    end = start + (360 / (loopCount + 2.5))
     loopCount++
     degs = degs - 1 >= 1 ? degs - 1 : 1
     if (!target && degs === 1) {
