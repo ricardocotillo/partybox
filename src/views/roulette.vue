@@ -107,11 +107,11 @@ const spin = () => {
   delay += 0.1
   if (angle.value >= end) {
     start = angle.value
-    end = start + (360 / (loopCount + 0.3))
+    end = start + (360 / (loopCount + 0.4))
     loopCount++
     degs = degs - 1 >= 1 ? degs - 1 : 1
     if (!target && degs === 1) {
-      target = Math.floor(Math.random() * 180) + start
+      target = Math.floor(Math.random() * 360) + start
       target = (target - (target % trench)) + (trench)
     }
   }
