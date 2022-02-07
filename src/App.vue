@@ -1,13 +1,15 @@
 <script setup>
-import { computed, inject } from 'vue'
+import { computed, inject, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const store = inject('store')
 const route = useRoute()
 
-if (route.query.flavor) {
-  store.changeFlavor(route.query.flavor)
-}
+const flavor = computed(() => route.query.flavor)
+
+watch(flavor, newFlavor => {
+  store.changeFlavor(newFlavor)
+})
 
 const bgColor = computed(() => {
   switch (store.state.flavor) {
@@ -22,7 +24,7 @@ const bgColor = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden" :class="bgColor" style="background-image: url(img/PATRON.svg)">
+  <div class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden" :class="bgColor" style="background-image: url(/img/PATRON.svg)">
     <router-view />
   </div>
 </template>
