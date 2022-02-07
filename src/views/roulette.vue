@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="hidden md:flex w-full absolute justify-between items-center">
-      <div class="-translate-x-16 flex items-start">
-        <img class="w-60 rotate-12" src="../assets/GATO.png" alt="gato" />
-        <div class="-translate-x-16 translate-y-10 relative">
+      <div class="-translate-x-16 2xl:-translate-x-28 flex items-start">
+        <img class="w-60 2xl:w-96 rotate-12" src="../assets/GATO.png" alt="gato" />
+        <div class="relative -translate-x-16 translate-y-10 2xl:-translate-x-28 2xl:translate-y-20">
           <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
-          <p class="font-trash-hand text-center w-60 mt-2 translate-x-2 text-xl">Gira la ruleta y escoge<br>castigo o trago</p>
+          <p class="font-trash-hand text-center mt-2 translate-x-2 text-xl w-60 2xl:w-96 2xl:text-4xl 2xl:translate-x-6 2xl:mt-5">Gira la ruleta y escoge<br>castigo o trago</p>
         </div>
       </div>
       <img class="w-48 mx-12 hidden lg:block" src="../assets/LOGO_PB.svg" alt="logo party box" />
