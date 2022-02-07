@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full shadow-md lg:hidden">
-    <img class="w-16 lg:w-32 mx-auto pb-6 pt-12 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
+  <div class="w-full shadow-md lg:hidden" :class="bgColor(store.state.flavor)">
+    <img class="w-20 lg:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
   <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
@@ -88,6 +88,7 @@
 <script setup>
 import { ref, inject, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { bgColor } from '../common'
 
 const store = inject('store')
 const router = useRouter()
@@ -112,7 +113,7 @@ const spin = () => {
   delay += 0.1
   if (angle.value >= end) {
     start = angle.value
-    end = start + (360 / (loopCount + 2.5))
+    end = start + (360 / (loopCount + 3))
     loopCount++
     degs = degs - 1 >= 1 ? degs - 1 : 1
     if (!target && degs === 1) {
