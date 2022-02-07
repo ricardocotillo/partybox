@@ -58,7 +58,12 @@
         <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center">
           <img class="w-2/3" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
           <img class="w-2/3 mx-auto" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
-          <span class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen">{{ dare }}</span>
+          <span
+            class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen"
+            :class="store.state.mode == 'hot' ? 'text-white': null"
+          >
+            {{ dare }}
+          </span>
           <div class="w-2/3 bg-cover bg-no-repeat mt-8" :style="{backgroundImage: `url(${dareBg})`}">
             <p class="font-trash-hand text-2xl md:text-4xl xl:text-7xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
           </div>
