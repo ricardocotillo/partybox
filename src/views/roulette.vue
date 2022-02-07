@@ -1,6 +1,6 @@
 <template>
   <div class="w-full shadow-md lg:hidden" :class="bgColor(store.state.flavor)">
-    <img class="w-20 lg:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
+    <img class="w-20 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
   <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
@@ -20,7 +20,7 @@
           <p class="font-trash-hand text-center w-60 mt-2 translate-x-2 text-xl">Gira la ruleta y escoge<br>castigo o trago</p>
         </div>
       </div>
-      <img class="w-32 mx-12 hidden lg:block" src="../assets/LOGO_PB.svg" alt="logo party box" />
+      <img class="w-48 mx-12 hidden lg:block" src="../assets/LOGO_PB.svg" alt="logo party box" />
       <img v-if="store.state.mode == 'hot'" class="w-1/4 lg:hidden mr-5" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
       <img v-else class="w-1/4 lg:hidden mr-5" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
     </div>
@@ -29,7 +29,7 @@
       <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
         <div class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent border-b-primary-green absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"></div>
         <button
-          class="w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 md:text-4xl xl:w-44 xl:h-44 xl:text-6xl font-trash-hand bg-primary-green rounded-full border-2 border-white text-white cursor-pointer"
+          class="w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand bg-primary-green rounded-full border-2 border-white text-white cursor-pointer"
           :disabled="rotating"
         >
           Girar
@@ -78,9 +78,9 @@
   <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
     <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
     <img v-else class="w-1/5 xl:w-1/6" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
-    <div @click="changeLevel" class="relative w-44 xl:w-60 cursor-pointer">
+    <div @click="changeLevel" class="relative w-44 lg:w-56 xl:w-60 cursor-pointer">
       <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
-      <p class="absolute left-10 xl:left-14 top-3 xl:top-4 font-trash-hand text-xl xl:text-3xl block text-white">Cambia de nivel</p>
+      <p class="absolute left-10 xl:left-14 top-3 xl:top-4 font-trash-hand text-xl lg:text-3xl xl:text-3xl block text-white">Cambia de nivel</p>
     </div>
   </div>
 </template>
