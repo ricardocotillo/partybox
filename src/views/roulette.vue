@@ -1,0 +1,149 @@
+<template>
+  <div class="w-full shadow-md lg:hidden">
+    <img class="w-16 lg:w-32 mx-auto pb-6 pt-12 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
+  </div>
+  <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
+  <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
+  <div class="w-full relative">
+    <div class="absolute -left-12 -top-5 flex items-start md:hidden">
+      <img class="w-40 rotate-12" src="../assets/GATO.png" alt="gato" />
+      <div class="-translate-x-14 translate-y-5 relative">
+        <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
+        <p class="font-trash-hand text-center w-48 mt-1 translate-x-2">Gira la ruleta y escoge<br>castigo o trago</p>
+      </div>
+    </div>
+    <div class="hidden md:flex w-full absolute justify-between items-center">
+      <div class="-translate-x-16 flex items-start">
+        <img class="w-60 rotate-12" src="../assets/GATO.png" alt="gato" />
+        <div class="-translate-x-16 translate-y-10 relative">
+          <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
+          <p class="font-trash-hand text-center w-60 mt-2 translate-x-2 text-xl">Gira la ruleta y escoge<br>castigo o trago</p>
+        </div>
+      </div>
+      <img class="w-32 mx-12 hidden lg:block" src="../assets/LOGO_PB.svg" alt="logo party box" />
+      <img v-if="store.state.mode == 'hot'" class="w-1/4 lg:hidden mr-5" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
+      <img v-else class="w-1/4 lg:hidden mr-5" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
+    </div>
+    <div class="h-20 md:h-56 lg:h-32"></div>
+    <div class="w-80 h-full mx-auto md:w-2/3 lg:w-2/5 grid grid-cols-1 grid-rows-1 place-items-center">
+      <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
+        <div class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent border-b-primary-green absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"></div>
+        <button
+          class="w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 md:text-4xl xl:w-44 xl:h-44 xl:text-6xl font-trash-hand bg-primary-green rounded-full border-2 border-white text-white cursor-pointer"
+          :disabled="rotating"
+        >
+          Girar
+        </button>
+      </div>
+      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(${angle}deg)`}" />
+      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(${angle}deg)`}" />
+      <transition
+        enter-from-class="scale-0"
+        enter-active-class="duration-500"
+        enter-to-class="scale-100"
+        leave-from-class="scale-100"
+        leave-active-class="duration-500"
+        leave-to-class="scale-0"
+      >
+        <div v-if="showDare" class="w-full rounded-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-20 opacity-90" :class="store.state.mode == 'hot' ? 'bg-primary-green' : 'bg-white'"></div>
+      </transition>
+      <transition
+        enter-from-class="opacity-0"
+        enter-active-class="duration-500 delay-500"
+        enter-to-class="opacity-100"
+        leave-from-class="opacity-100"
+        leave-active-class="duration-500"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center">
+          <img class="w-2/3" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
+          <span class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen">{{ dare }}</span>
+          <div class="w-2/3 bg-cover bg-no-repeat mt-8" :style="{backgroundImage: `url(${dareBg})`}">
+            <p class="font-trash-hand text-2xl md:text-4xl xl:text-7xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
+          </div>
+        </div>
+      </transition>
+    </div>
+  </div>
+  <div @click="changeLevel" class="relative w-44 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden">
+    <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
+    <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-xl md:text-3xl block text-white">Cambia de nivel</p>
+  </div>
+  <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
+    <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
+    <img v-else class="w-1/5 xl:w-1/6" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
+    <div @click="changeLevel" class="relative w-44 xl:w-60 cursor-pointer">
+      <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
+      <p class="absolute left-10 xl:left-14 top-3 xl:top-4 font-trash-hand text-xl xl:text-3xl block text-white">Cambia de nivel</p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, inject, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const store = inject('store')
+const router = useRouter()
+
+const showDare = ref(false)
+const rotating = ref(false)
+
+const slots = [1, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+const punishments = ['02 secos', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos']
+const trench = 360 / slots.length
+const angle = ref(0)
+let loopCount = 0
+let delay = 0
+let degs = 10
+let start = 0
+let end = 360
+let target = null
+// methods
+const spin = () => {
+  rotating.value = true
+  angle.value += degs
+  delay += 0.1
+  if (angle.value >= end) {
+    start = angle.value
+    end = start + (360 / (loopCount + 0.3))
+    loopCount++
+    degs = degs - 1 >= 1 ? degs - 1 : 1
+    if (!target && degs === 1) {
+      target = Math.floor(Math.random() * 180) + start
+      target = (target - (target % trench)) + (trench)
+    }
+  }
+  if (degs >= 1 && (!target || angle.value <= target)) {
+    setTimeout(spin, delay)
+  } else {
+    loopCount = 0
+    degs = 10
+    start = 0
+    end = 360
+    angle.value = angle.value % 360
+    delay = 0
+    target = null
+    showDare.value = true
+    rotating.value = false
+  }
+}
+
+const getIndex = (angle) => {
+  const index = Math.floor((angle + (trench/2)) / trench)
+  return index < 16 ? index : 0
+}
+
+const dare = computed(() => {
+  return slots[getIndex(angle.value)]
+})
+
+const punishment = computed(() => punishments[getIndex(angle.value)])
+
+const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
+
+const changeLevel = () => {
+  router.push('mode')
+}
+</script>
