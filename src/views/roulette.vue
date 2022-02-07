@@ -90,6 +90,7 @@ import { ref, inject, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { bgColor } from '../common'
 
+// data
 const store = inject('store')
 const router = useRouter()
 
@@ -106,6 +107,7 @@ let degs = 10
 let start = 0
 let end = 360
 let target = null
+
 // methods
 const spin = () => {
   rotating.value = true
