@@ -15,7 +15,11 @@ watch(flavor, newFlavor => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden" :class="bgColor(store.state.flavor)" style="background-image: url(/img/PATRON.svg)">
+  <div
+    class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden landscape:min-h-w-screen landscape:min-w-h-screen landscape:-rotate-90 landscape:origin-top-left landscape:absolute landscape:left-0 landscape:top-full"
+    :class="bgColor(store.state.flavor)"
+    style="background-image: url(/img/PATRON.svg)"
+  >
     <router-view />
   </div>
 </template>

@@ -6,7 +6,13 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        18: '4.5rem'
+        18: '4.5rem',
+      },
+      minHeight: {
+        'w-screen': '100vw',
+      },
+      minWidth: {
+        'h-screen': '100vh',
       },
       fontSize: {
         'sm-screen': '11rem',
