@@ -66,7 +66,7 @@
       </transition>
     </div>
   </div>
-  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer hidden short:block short:lg:hidden absolute bottom-10 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-2">
+  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer hidden short:block short:lg:hidden absolute bottom-16 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-2">
     <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
     <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-2xl scale-105 md:text-3xl block text-white">Cambia de nivel</p>
   </div>
