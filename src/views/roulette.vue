@@ -66,10 +66,11 @@
       </transition>
     </div>
   </div>
-  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden absolute bottom-5 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-2">
+  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer hidden short:block short:lg:hidden absolute bottom-10 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-2">
     <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
     <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-2xl scale-105 md:text-3xl block text-white">Cambia de nivel</p>
   </div>
+  <img @click="changeLevel" class="block short:hidden sm:hidden w-16 absolute bottom-3 right-3 cursor-pointer" src="../assets/BOTON_BOTON.svg" alt="cambiar de nivel" />
   <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
     <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
     <img v-else class="w-1/5 xl:w-1/6" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />

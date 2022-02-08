@@ -39,6 +39,9 @@ module.exports = {
       fontFamily: {
         watermelon: 'Watermelon',
         'trash-hand': 'Trashhand',
+      },
+      screens: {
+        'short': { raw: '(min-height: 668px)' },
       }
     },
   },
