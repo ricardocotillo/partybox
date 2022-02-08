@@ -5,8 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        18: '4.5rem'
+      },
       fontSize: {
-        'sm-screen': '10rem',
+        'sm-screen': '11rem',
         'md-screen': '14rem',
         'lg-screen': '10rem',
         'xl-screen': '17rem',

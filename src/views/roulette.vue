@@ -1,15 +1,15 @@
 <template>
   <div class="w-full shadow-md lg:hidden" :class="bgColor(store.state.flavor)">
-    <img class="w-20 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
+    <img class="w-24 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
   <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
   <div class="w-full relative">
-    <div class="absolute -left-20 -top-10 flex items-start md:hidden">
+    <div class="absolute -left-18 -top-10 flex items-start md:hidden">
       <img class="w-52 rotate-12" src="../assets/GATO.png" alt="gato" />
-      <div class="-translate-x-14 translate-y-10 relative">
+      <div class="-translate-x-16 translate-y-10 relative">
         <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
-        <p class="font-trash-hand text-center w-48 mt-3 ml-1 translate-x-2 leading-4 text-lg">Gira la ruleta y escoge<br>castigo o trago</p>
+        <p class="font-trash-hand text-center w-52 mt-4 ml-1 translate-x-2 leading-4 text-xl">Gira la ruleta y escoge<br>castigo o trago</p>
       </div>
     </div>
     <div class="hidden md:flex w-full absolute justify-between items-center">
@@ -17,7 +17,7 @@
         <img class="w-60 2xl:w-96 rotate-12" src="../assets/GATO.png" alt="gato" />
         <div class="relative -translate-x-16 translate-y-10 2xl:-translate-x-28 2xl:translate-y-20">
           <img class="absolute" src="../assets/NUBE_DE_COMENTARIO.svg" alt="nube de comentario" />
-          <p class="font-trash-hand text-center mt-2 translate-x-2 text-xl w-60 2xl:w-96 2xl:text-4xl 2xl:translate-x-6 2xl:mt-5">Gira la ruleta y escoge<br>castigo o trago</p>
+          <p class="font-trash-hand text-center mt-4 translate-x-2 text-xl w-60 2xl:w-96 2xl:text-4xl 2xl:translate-x-6 2xl:mt-5 leading-4">Gira la ruleta y escoge<br>castigo o trago</p>
         </div>
       </div>
       <img class="w-48 mx-12 hidden lg:block" src="../assets/LOGO_PB.svg" alt="logo party box" />
@@ -56,11 +56,11 @@
         leave-to-class="opacity-0"
       >
         <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center justify-center cursor-pointer relative">
-          <img class="w-2/3 mx-auto absolute" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
           <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
           <span
             style="line-height: .75"
-            class="font-trash-hand h-1/3 text-9xl md:text-md-screen lg:text-sm-screen xl:text-xl-screen 2xl:text-2xl-screen"
+            class="font-trash-hand h-1/3 text-sm-screen md:text-md-screen lg:text-sm-screen xl:text-xl-screen 2xl:text-2xl-screen"
             :class="store.state.mode == 'hot' ? 'text-white': null"
           >
             {{ dare }}
@@ -72,9 +72,9 @@
       </transition>
     </div>
   </div>
-  <div @click="changeLevel" class="w-44 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden absolute bottom-5 left-1/2 -translate-x-1/2">
+  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer lg:hidden absolute bottom-5 left-1/2 -translate-x-1/2">
     <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
-    <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-xl md:text-3xl block text-white">Cambia de nivel</p>
+    <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-2xl scale-105 md:text-3xl block text-white">Cambia de nivel</p>
   </div>
   <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
     <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
@@ -89,7 +89,7 @@
 <script setup>
 import { ref, inject, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { bgColor } from '../common'
+import { bgColor, punishments } from '../common'
 
 // data
 const store = inject('store')
@@ -98,9 +98,7 @@ const router = useRouter()
 const showDare = ref(false)
 const rotating = ref(false)
 
-const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-const punishments = ['02 secos', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos']
-const trench = 360 / slots.length
+const trench = 360 / punishments.slots.length
 const angle = ref(0)
 let loopCount = 0
 let delay = 0
@@ -108,6 +106,17 @@ let degs = 10
 let start = 0
 let end = 360
 let target = null
+
+// computed
+const p = computed(() => store.state.mode === 'hot' ? punishments.hot : punishments.tranki)
+
+const dare = computed(() => {
+  return punishments.slots[getIndex(angle.value)]
+})
+
+const punishment = computed(() => p.value[getIndex(angle.value)])
+
+const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
 
 // methods
 const spin = () => {
@@ -143,14 +152,6 @@ const getIndex = (angle) => {
   const index = Math.floor((angle + (trench/2)) / trench)
   return index < 16 ? index : 0
 }
-
-const dare = computed(() => {
-  return slots[getIndex(angle.value)]
-})
-
-const punishment = computed(() => punishments[getIndex(angle.value)])
-
-const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
 
 const changeLevel = () => {
   router.push('mode')
