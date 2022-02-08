@@ -55,10 +55,10 @@
         leave-active-class="duration-500"
         leave-to-class="opacity-0"
       >
-        <div v-if="showDare" @click="showDare = false" class="w-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex flex-col items-center justify-center cursor-pointer relative">
+        <div v-if="showDare" @click="showDare = false" class="w-full h-full max-h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex items-center justify-center cursor-pointer relative">
           <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
           <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
-          <img class="w-1/6 " :src="numberImg" :alt="`numero de castigo ${dare}`" />
+          <img class="h-1/3 absolute" :src="numberImg" :alt="`numero de castigo ${dare}`" />
           <div class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mt-8 absolute bottom-7 md:bottom-12" :style="{backgroundImage: `url(${dareBg})`}">
             <p class="font-trash-hand text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
           </div>

@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        '1/12': '8.33%',
+        '1/6': '16.66%',
+      },
       spacing: {
         18: '4.5rem',
       },
