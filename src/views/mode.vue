@@ -20,7 +20,7 @@ const mode = computed(() => store.state.mode)
 
 const click = (m) => {
   store.changeMode(m)
-  router.push('roulette')
+  setTimeout(() => router.push('roulette'), 500)
 }
 </script>
 
