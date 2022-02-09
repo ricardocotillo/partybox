@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, inject, computed } from 'vue'
+import { ref, inject, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { bgColor, punishments } from '../common'
 
@@ -93,14 +93,18 @@ const router = useRouter()
 const showDare = ref(false)
 const rotating = ref(false)
 
+const clickingSound = new Audio(new URL('../assets/sound/click3.mp3', import.meta.url))
+clickingSound.playbackRate = 1.1
+
 const trench = 360 / punishments.slots.length
 const angle = ref(0)
-let loopCount = 0
 let delay = 0
-let degs = 10
+let degs = 1
 let start = 0
-let end = 360
-let target = null
+let end = 0
+const step = 0.000005
+const rounds = 3
+let sounded = 0
 
 // computed
 const p = computed(() => store.state.mode === 'hot' ? punishments.hot : punishments.tranki)
@@ -115,32 +119,24 @@ const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FON
 
 const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store.state.mode == 'hot' ? 'B' : ''}.svg`, import.meta.url))
 // methods
+
 const spin = () => {
+  if (!rotating.value) {
+    start = angle.value
+    end = start + (360 * rounds) + Math.floor(Math.random() * 360)
+    end = (end - (end % trench)) + (trench)
+  }
   rotating.value = true
   angle.value += degs
-  delay += 0.1
-  if (angle.value >= end) {
-    start = angle.value
-    end = start + (360 / (loopCount + 3))
-    loopCount++
-    degs = degs - 1 >= 1 ? degs - 1 : 1
-    if (!target && degs === 1) {
-      target = Math.floor(Math.random() * 360) + start
-      target = (target - (target % trench)) + (trench)
-    }
-  }
-  if (degs >= 1 && (!target || angle.value <= target)) {
+  delay += (step * ((end - angle.value) / 15))
+  if (angle.value <= end) {
     setTimeout(spin, delay)
   } else {
-    loopCount = 0
-    degs = 10
-    start = 0
-    end = 360
     angle.value = angle.value % 360
     delay = 0
-    target = null
     showDare.value = true
     rotating.value = false
+    sounded = 0
   }
 }
 
@@ -152,4 +148,11 @@ const getIndex = (angle) => {
 const changeLevel = () => {
   router.push('mode')
 }
+
+watch(angle, newAngle => {
+  if (Math.floor(newAngle / trench) > sounded) {
+    clickingSound.play()
+    sounded++
+  }
+})
 </script>
