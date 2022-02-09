@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full shadow-md lg:hidden" :class="bgColor(store.state.flavor)">
+  <div class="w-full shadow-md lg:hidden relative" :class="bgColor(store.state.flavor)">
+    <img @click="changeLevel" class="block short:hidden w-16 top-1/2 -translate-y-1/2 cursor-pointer absolute left-2" src="../assets/boton_small.svg" alt="cambia de nivel" />
     <img class="w-24 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
@@ -70,7 +71,6 @@
     <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
     <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-2xl scale-105 md:text-3xl block text-white">Cambia de nivel</p>
   </div>
-  <img @click="changeLevel" class="block short:hidden sm:hidden w-16 absolute bottom-3 right-3 cursor-pointer" src="../assets/BOTON_BOTON.svg" alt="cambiar de nivel" />
   <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
     <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
     <img v-else class="w-1/5 xl:w-1/6" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
@@ -128,7 +128,7 @@ const spin = () => {
   }
   rotating.value = true
   angle.value += degs
-  delay += (step * ((end - angle.value) / 15))
+  delay += angle.value / 360 < 1.5 ? (step * ((end - angle.value) / 15)) : 0.05
   if (angle.value <= end) {
     setTimeout(spin, delay)
   } else {
