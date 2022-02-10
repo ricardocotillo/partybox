@@ -1,10 +1,10 @@
 <template>
   <div class="w-full shadow-md lg:hidden relative" :class="bgColor(store.state.flavor)">
-    <img @click="changeLevel" class="block short:hidden w-16 top-1/2 -translate-y-1/2 cursor-pointer absolute left-2" src="../assets/boton_small.svg" alt="cambia de nivel" />
+    <img @click="changeLevel" class="block short:hidden w-24 top-1/2 -translate-y-1/2 cursor-pointer absolute left-2" src="../assets/boton_small.svg" alt="cambia de nivel" />
     <img class="w-24 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
   <img v-if="store.state.mode == 'hot'" class="w-1/3 mx-auto my-3 md:mx-0 md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
-  <img v-else class="w-1/3 mx-auto my-3 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
+  <img v-else class="w-1/2 mx-auto mt-3 mb-5 md:mx-0 md:my-auto md:ml-auto md:mt-6 md:translate-y-16 md:hidden" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
   <div class="w-full relative">
     <div class="absolute -left-18 -top-10 flex items-start md:hidden">
       <img class="w-52 rotate-12" src="../assets/GATO.png" alt="gato" />
