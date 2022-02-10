@@ -102,8 +102,8 @@ let delay = 0
 let degs = 1
 let start = 0
 let end = 0
-const step = 0.0000005
-const rounds = 3
+let step = 0.00000005
+const rounds = 1.3
 let sounded = 0
 
 // computed
@@ -128,7 +128,7 @@ const spin = () => {
   }
   rotating.value = true
   angle.value += degs
-  delay = angle.value / 360 < 2.85 ? delay + (step * ((end - angle.value) / 40)) : delay + 0.1
+  delay = angle.value / 360 < 0.5 ? delay + (step * ((end - angle.value) / 40)) : delay + 0.05
   if (angle.value <= end) {
     setTimeout(spin, delay)
   } else {
@@ -150,13 +150,10 @@ const changeLevel = () => {
 }
 
 watch(angle, newAngle => {
-  if (Math.floor(angle.value / 360) === 0) {
+  const rounded = Math.floor(newAngle / trench)
+  if (rounded > sounded) {
+    sounded++
     clickingSound.play()
-  } else {
-    if (Math.floor(newAngle / trench) > sounded) {
-      clickingSound.play()
-      sounded = Math.floor(newAngle / trench)
-    }
-  }
+  } 
 })
 </script>
