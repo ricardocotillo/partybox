@@ -142,10 +142,20 @@ const changeLevel = () => {
 }
 
 onMounted(() => {
-  ruletaHot.value.addEventListener('transitionend', e => {
-    rotating.value = false
-    angle.value = angle.value % 360
-    showDare.value = true
-  })
+  if (ruletaHot.value.nodeType) {
+    ruletaHot.value.addEventListener('transitionend', e => {
+      rotating.value = false
+      angle.value = angle.value % 360
+      showDare.value = true
+    })
+  }
+
+  if (ruletaTranki.value.nodeType) {
+    ruletaTranki.value.addEventListener('transitionend', e => {
+      rotating.value = false
+      angle.value = angle.value % 360
+      showDare.value = true
+    })
+  }
 })
 </script>
