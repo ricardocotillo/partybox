@@ -36,8 +36,8 @@
           Girar
         </button>
       </div>
-      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out duration-4000" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
-      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out duration-4000" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img ref="ruletaHot" v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img ref="ruletaTranki" v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <transition
         enter-from-class="scale-0"
         enter-active-class="duration-500"
@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, inject, computed, watch } from 'vue'
+import { ref, inject, computed, watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { bgColor, punishments } from '../common'
 
@@ -90,8 +90,11 @@ import { bgColor, punishments } from '../common'
 const store = inject('store')
 const router = useRouter()
 
+// refs
 const showDare = ref(false)
 const rotating = ref(false)
+const ruletaHot = ref('ruletaHot')
+const ruletaTranki = ref('ruletaTranki')
 
 const clickingSound = new Audio(new URL('../assets/sound/RULETA2.mp3', import.meta.url))
 clickingSound.playbackRate = 1.1
@@ -122,7 +125,7 @@ const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store
 
 const spin = () => {
   clickingSound.play()
-  clickingSound.oncanplaythrough = () => console.log('hola')
+  rotating.value = true
   start = angle.value
   end = start + (360 * rounds) + Math.floor(Math.random() * 360)
   end = (end - (end % trench)) + (trench)
@@ -138,11 +141,11 @@ const changeLevel = () => {
   router.push('mode')
 }
 
-watch(angle, newAngle => {
-  const rounded = Math.floor(newAngle / trench)
-  if (rounded > sounded) {
-    sounded++
-    clickingSound.play()
-  } 
+onMounted(() => {
+  ruletaHot.value.addEventListener('transitionend', e => {
+    rotating.value = false
+    angle.value = angle.value % 360
+    showDare.value = true
+  })
 })
 </script>
