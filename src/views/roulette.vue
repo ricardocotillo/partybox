@@ -36,8 +36,8 @@
           Girar
         </button>
       </div>
-      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 ease-roulette-out duration-4000" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
-      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out duration-4000" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out duration-4000" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <transition
         enter-from-class="scale-0"
         enter-active-class="duration-500"
