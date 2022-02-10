@@ -36,7 +36,7 @@
           Girar
         </button>
       </div>
-      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 ease-roulette-out duration-4000" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <img v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <transition
         enter-from-class="scale-0"
@@ -93,7 +93,7 @@ const router = useRouter()
 const showDare = ref(false)
 const rotating = ref(false)
 
-const clickingSound = new Audio(new URL('../assets/sound/click3.mp3', import.meta.url))
+const clickingSound = new Audio(new URL('../assets/sound/RULETA.mp3', import.meta.url))
 clickingSound.playbackRate = 1.1
 
 const trench = 360 / punishments.slots.length
@@ -121,23 +121,12 @@ const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store
 // methods
 
 const spin = () => {
-  if (!rotating.value) {
-    start = angle.value
-    end = start + (360 * rounds) + Math.floor(Math.random() * 360)
-    end = (end - (end % trench)) + (trench)
-  }
-  rotating.value = true
-  angle.value += degs
-  delay = angle.value / 360 < 0.5 ? delay + (step * ((end - angle.value) / 40)) : delay + 0.05
-  if (angle.value <= end) {
-    setTimeout(spin, delay)
-  } else {
-    angle.value = angle.value % 360
-    delay = 0
-    showDare.value = true
-    rotating.value = false
-    sounded = 0
-  }
+  clickingSound.play()
+  clickingSound.oncanplaythrough = () => console.log('hola')
+  start = angle.value
+  end = start + (360 * rounds) + Math.floor(Math.random() * 360)
+  end = (end - (end % trench)) + (trench)
+  angle.value = end
 }
 
 const getIndex = (angle) => {

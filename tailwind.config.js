@@ -55,6 +55,12 @@ module.exports = {
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
+      },
+      transitionDuration: {
+        4000: '4000ms'
+      },
+      transitionTimingFunction: {
+        'roulette-out': 'cubic-bezier(.17,.67,.38,.64)',
       }
     },
   },
