@@ -93,7 +93,7 @@ const router = useRouter()
 const showDare = ref(false)
 const rotating = ref(false)
 
-const clickingSound = new Audio(new URL('../assets/sound/RULETA.mp3', import.meta.url))
+const clickingSound = new Audio(new URL('../assets/sound/RULETA2.mp3', import.meta.url))
 clickingSound.playbackRate = 1.1
 
 const trench = 360 / punishments.slots.length
