@@ -82,9 +82,9 @@
 </template>
 
 <script setup>
-import { ref, inject, computed, watch, onMounted } from 'vue'
+import { ref, inject, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { bgColor, punishments } from '../common'
+import { punishments, bgColor } from '../common'
 
 // data
 const store = inject('store')
@@ -101,13 +101,9 @@ clickingSound.playbackRate = 1.1
 
 const trench = 360 / punishments.slots.length
 const angle = ref(0)
-let delay = 0
-let degs = 1
 let start = 0
 let end = 0
-let step = 0.00000005
 const rounds = 1.3
-let sounded = 0
 
 // computed
 const p = computed(() => store.state.mode === 'hot' ? punishments.hot : punishments.tranki)
