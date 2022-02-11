@@ -10,16 +10,17 @@
 </template>
 
 <script setup>
-import { inject, computed } from 'vue'
+import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const store = inject('store')
 
-const mode = computed(() => store.state.mode)
+const mode = ref(null)
 
 const click = (m) => {
   store.changeMode(m)
+  mode.value = m
   setTimeout(() => router.push('roulette'), 500)
 }
 </script>
