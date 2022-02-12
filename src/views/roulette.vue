@@ -84,6 +84,7 @@
 <script setup>
 import { ref, inject, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { Howl, Howler } from 'howler'
 import { punishments, bgColor } from '../common'
 
 // data
@@ -96,8 +97,10 @@ const rotating = ref(false)
 const ruletaHot = ref('ruletaHot')
 const ruletaTranki = ref('ruletaTranki')
 
-const clickingSound = new Audio(new URL('../assets/sound/RULETA2.mp3', import.meta.url))
-clickingSound.playbackRate = 1.1
+const clickingSound = new Howl({
+  src: ['/sound/RULETA2.mp3'],
+  preload: true,
+})
 
 const trench = 360 / punishments.slots.length
 const angle = ref(0)
@@ -117,8 +120,8 @@ const punishment = computed(() => p.value[getIndex(angle.value)])
 const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
 
 const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store.state.mode == 'hot' ? 'B' : ''}.svg`, import.meta.url))
-// methods
 
+// methods
 const spin = () => {
   clickingSound.play()
   rotating.value = true
