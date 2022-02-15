@@ -84,7 +84,6 @@
 <script setup>
 import { ref, inject, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { Howl, Howler } from 'howler'
 import { punishments, bgColor } from '../common'
 
 // data
@@ -96,11 +95,6 @@ const showDare = ref(false)
 const rotating = ref(false)
 const ruletaHot = ref('ruletaHot')
 const ruletaTranki = ref('ruletaTranki')
-
-const clickingSound = new Howl({
-  src: ['/sound/RULETA2.mp3'],
-  preload: true,
-})
 
 const trench = 360 / punishments.slots.length
 const angle = ref(0)
@@ -123,7 +117,6 @@ const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store
 
 // methods
 const spin = () => {
-  clickingSound.play()
   rotating.value = true
   start = angle.value
   end = start + (360 * rounds) + Math.floor(Math.random() * 360)
