@@ -32,16 +32,28 @@
       :style="{height: rouletteContainerHeight}"
     >
       <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
-        <div class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent border-b-primary-green absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"></div>
+        <div
+          class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"
+          :class="store.state.flavor == 'cherry' ? 'border-b-black' : 'border-b-primary-green'"
+        >
+        </div>
         <button
-          class="shadow-xl w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand bg-primary-green rounded-full border-4 border-white text-white cursor-pointer"
+          class="shadow-xl w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand rounded-full border-4 border-white text-white cursor-pointer"
+          :class="store.state.flavor == 'cherry' ? 'bg-black' : 'bg-primary-green'"
           :disabled="rotating"
         >
           Girar
         </button>
       </div>
-      <img @load="update" ref="ruletaHot" v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
-      <img @load="update" ref="ruletaTranki" v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img
+        @load="update"
+        ref="ruletaHot"
+        :src="rouletteImgSrc"
+        class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out"
+        :class="rotating ? 'duration-4000' : 'duration-0'"
+        alt="ruleta"
+        :style="{transform: `rotate(-${angle}deg)`}"
+      />
       <transition
         enter-from-class="scale-0"
         enter-active-class="duration-500"
@@ -117,6 +129,8 @@ const punishment = computed(() => p.value[getIndex(angle.value)])
 const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
 
 const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store.state.mode == 'hot' ? 'B' : ''}.svg`, import.meta.url))
+
+const rouletteImgSrc = computed(() => new URL(`../assets/roulettes/${store.state.flavor}/${store.state.mode}.svg`, import.meta.url))
 
 // methods
 const spin = () => {

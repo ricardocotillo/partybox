@@ -9,7 +9,9 @@ const route = useRoute()
 const flavor = computed(() => route.query.flavor)
 
 watch(flavor, newFlavor => {
-  store.changeFlavor(newFlavor)
+  if (newFlavor) {
+    store.changeFlavor(newFlavor)
+  }
 })
 
 </script>
