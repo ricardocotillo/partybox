@@ -47,7 +47,7 @@
       </div>
       <img
         @load="update"
-        ref="ruletaHot"
+        ref="roulette"
         :src="rouletteImgSrc"
         class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out"
         :class="rotating ? 'duration-4000' : 'duration-0'"
@@ -62,7 +62,13 @@
         leave-active-class="duration-500"
         leave-to-class="scale-0"
       >
-        <div v-if="showDare" class="w-full rounded-full h-full col-start-1 col-end-1 row-start-1 row-end-1 z-20 opacity-90" :class="store.state.mode == 'hot' ? 'bg-primary-green' : 'bg-white'"></div>
+        <div
+          v-if="showDare"
+          class="rounded-full col-start-1 col-end-1 row-start-1 row-end-1 z-20 opacity-90"
+          :class="store.state.mode == 'hot' ? 'bg-primary-green' : 'bg-white'"
+          :style="getSize()"
+        >
+        </div>
       </transition>
       <transition
         enter-from-class="opacity-0"
@@ -72,12 +78,22 @@
         leave-active-class="duration-500"
         leave-to-class="opacity-0"
       >
-        <div v-if="showDare" @click="showDare = false" class="w-full h-full max-h-full col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex items-center justify-center cursor-pointer relative">
+        <div
+          v-if="showDare"
+          @click="showDare = false"
+          class="col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex items-center justify-center cursor-pointer relative"
+          :style="getSize()"
+        >
           <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
           <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
           <img class="h-1/3 absolute" :src="numberImg" :alt="`numero de castigo ${dare}`" />
           <div class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mt-8 absolute bottom-7 md:bottom-12" :style="{backgroundImage: `url(${dareBg})`}">
-            <p class="font-trash-hand text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl xl:pt-3 text-center pt-1 md:pt-2" :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'">o Toma {{ punishment }}</p>
+            <p
+              class="font-trash-hand text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl xl:pt-3 text-center pt-1 md:pt-2"
+              :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'"
+            >
+              o Toma {{ punishment }}
+            </p>
           </div>
         </div>
       </transition>
@@ -106,8 +122,7 @@ const rouletteContainerHeight = ref('auto')
 // refs
 const showDare = ref(false)
 const rotating = ref(false)
-const ruletaHot = ref('ruletaHot')
-const ruletaTranki = ref('ruletaTranki')
+const roulette = ref('roulette')
 const nav = ref('nav')
 const rouletteContainer = ref('rouletteContainer')
 
@@ -156,21 +171,19 @@ const update = () => {
   rouletteContainerHeight.value = `${height}px`
 }
 
-onMounted(() => {
-  if (ruletaHot.value.nodeType) {
-    ruletaHot.value.addEventListener('transitionend', e => {
-      rotating.value = false
-      angle.value = angle.value % 360
-      showDare.value = true
-    })
+const getSize = () => {
+  const size = {
+    height: `${roulette.value.offsetHeight}px`,
+    width: `${roulette.value.offsetWidth}px`,
   }
+  return size
+}
 
-  if (ruletaTranki.value.nodeType) {
-    ruletaTranki.value.addEventListener('transitionend', e => {
-      rotating.value = false
-      angle.value = angle.value % 360
-      showDare.value = true
-    })
-  }
+onMounted(() => {
+  roulette.value.addEventListener('transitionend', e => {
+    rotating.value = false
+    angle.value = angle.value % 360
+    showDare.value = true
+  })
 })
 </script>
