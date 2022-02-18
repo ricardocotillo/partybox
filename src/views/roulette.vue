@@ -65,7 +65,7 @@
         <div
           v-if="showDare"
           class="rounded-full col-start-1 col-end-1 row-start-1 row-end-1 z-20 opacity-90"
-          :class="store.state.mode == 'hot' ? 'bg-primary-green' : 'bg-white'"
+          :class="store.state.mode == 'tranki' ? 'bg-white' : store.state.flavor == 'cherry' ? 'bg-black': 'bg-primary-green'"
           :style="getSize()"
         >
         </div>
@@ -84,8 +84,8 @@
           class="col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex items-center justify-center cursor-pointer relative"
           :style="getSize()"
         >
-          <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
-          <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/punishment/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/punishment/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
           <img class="h-1/3 absolute" :src="numberImg" :alt="`numero de castigo ${dare}`" />
           <div class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mt-8 absolute bottom-7 md:bottom-12" :style="{backgroundImage: `url(${dareBg})`}">
             <p
@@ -141,7 +141,14 @@ const dare = computed(() => {
 
 const punishment = computed(() => p.value[getIndex(angle.value)])
 
-const dareBg = computed(() => store.state.mode == 'hot' ? new URL('../assets/FONDO_SECOS_BLANCO_HOT.svg', import.meta.url) : new URL('../assets/FONDO_SECOS_TRANKI.svg', import.meta.url))
+const dareBg = computed(() => {
+  const src = store.state.mode == 'hot'
+    ? new URL('../assets/punishment/seco_hot.svg', import.meta.url)
+    : store.state.flavor === 'cherry'
+    ? new URL('../assets/punishment/seco_tranki_cherry.svg', import.meta.url)
+    : new URL('../assets/punishment/seco_tranki.svg', import.meta.url)
+  return src
+})
 
 const numberImg = computed(() => new URL(`../assets/numbers/${dare.value}${store.state.mode == 'hot' ? 'B' : ''}.svg`, import.meta.url))
 
