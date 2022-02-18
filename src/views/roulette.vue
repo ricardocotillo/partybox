@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full shadow-md lg:hidden relative" :class="bgColor(store.state.flavor)">
+  <div ref="nav" class="w-full shadow-md lg:hidden relative" :class="bgColor(store.state.flavor)">
     <img @click="changeLevel" class="block short:hidden w-24 top-1/2 -translate-y-1/2 cursor-pointer absolute left-2" src="../assets/boton_small.svg" alt="cambia de nivel" />
     <img class="w-24 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
@@ -26,7 +26,11 @@
       <img v-else class="w-1/4 lg:hidden mr-5" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
     </div>
     <div class="h-20 md:h-56 lg:h-32"></div>
-    <div class="w-80 h-full mx-auto md:w-2/3 lg:w-2/5 grid grid-cols-1 grid-rows-1 place-items-center">
+    <div
+      ref="rouletteContainer"
+      class="w-80 mx-auto md:w-2/3 lg:w-2/5 grid grid-cols-1 grid-rows-1 place-items-center"
+      :style="{height: rouletteContainerHeight}"
+    >
       <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
         <div class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent border-b-primary-green absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"></div>
         <button
@@ -36,8 +40,8 @@
           Girar
         </button>
       </div>
-      <img ref="ruletaHot" v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
-      <img ref="ruletaTranki" v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img @load="update" ref="ruletaHot" v-if="store.state.mode == 'hot'" class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_HOT.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
+      <img @load="update" ref="ruletaTranki" v-else class="w-full col-start-1 col-end-2 row-start-1 row-end-1 transition-transform ease-roulette-out" :class="rotating ? 'duration-4000' : 'duration-0'" src="../assets/RULETA_TRANKI.svg" alt="ruleta" :style="{transform: `rotate(-${angle}deg)`}" />
       <transition
         enter-from-class="scale-0"
         enter-active-class="duration-500"
@@ -67,10 +71,6 @@
       </transition>
     </div>
   </div>
-  <div @click="changeLevel" class="w-48 md:w-60 mx-auto mt-2 cursor-pointer hidden short:block short:lg:hidden absolute bottom-16 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-2">
-    <img class="w-full" src="../assets/BOTON_CAMBIA_DE_NIVEL.svg" alt="cambia de nivel" />
-    <p class="absolute left-10 md:left-14 top-3 md:top-4 font-trash-hand text-2xl scale-105 md:text-3xl block text-white">Cambia de nivel</p>
-  </div>
   <div class="hidden lg:flex justify-between items-center px-12 absolute bottom-5 w-full">
     <img v-if="store.state.mode == 'hot'" class="w-1/5 xl:w-1/6" src="../assets/NIVEL_HOT.svg" alt="nivel hot" />
     <img v-else class="w-1/5 xl:w-1/6" src="../assets/NIVEL_TRANKI.svg" alt="nivel tranki" />
@@ -89,12 +89,15 @@ import { punishments, bgColor } from '../common'
 // data
 const store = inject('store')
 const router = useRouter()
+const rouletteContainerHeight = ref('auto')
 
 // refs
 const showDare = ref(false)
 const rotating = ref(false)
 const ruletaHot = ref('ruletaHot')
 const ruletaTranki = ref('ruletaTranki')
+const nav = ref('nav')
+const rouletteContainer = ref('rouletteContainer')
 
 const trench = 360 / punishments.slots.length
 const angle = ref(0)
@@ -131,6 +134,12 @@ const getIndex = (angle) => {
 
 const changeLevel = () => {
   router.push('mode')
+}
+
+const update = () => {
+  const bottom = rouletteContainer.value.getBoundingClientRect().bottom
+  let height = rouletteContainer.value.offsetHeight + document.body.clientHeight - bottom
+  rouletteContainerHeight.value = `${height}px`
 }
 
 onMounted(() => {
