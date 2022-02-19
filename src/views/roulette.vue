@@ -81,13 +81,18 @@
         <div
           v-if="showDare"
           @click="showDare = false"
-          class="col-start-1 col-end-1 row-start-1 row-end-1 z-30 flex items-center justify-center cursor-pointer relative"
+          class="col-start-1 col-end-2 row-start-1 row-end-2 z-30 grid grid-rows-10 grid-cols-1"
           :style="getSize()"
         >
-          <img class="w-2/3 mx-auto absolute top-5" v-if="store.state.mode == 'hot'" src="../assets/punishment/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
-          <img class="w-2/3 mx-auto absolute top-5" v-else src="../assets/punishment/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
-          <img class="h-1/3 absolute" :src="numberImg" :alt="`numero de castigo ${dare}`" />
-          <div class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mt-8 absolute bottom-7 md:bottom-12" :style="{backgroundImage: `url(${dareBg})`}">
+          <img class="w-2/3 mx-auto row-start-1 row-end-2" v-if="store.state.mode == 'hot'" src="../assets/punishment/TEXTO_POP_UP_CASTIGO_BLANCO.svg" alt="castigo" />
+          <img class="w-2/3 mx-auto row-start-1 row-end-2" v-else src="../assets/punishment/TEXTO_POP_UP_CASTIGO_NEGRO.svg" alt="castigo" />
+          <img class="h-full mx-auto row-start-3 row-end-7 translate-y-4" :src="numberImg" :alt="`numero de castigo ${dare}`" />
+          <img class="w-2/3 mx-auto row-start-7 row-end-8" v-if="store.state.mode == 'hot'" src="../assets/punishment/delaruleta_blanco.svg" alt="de la ruleta" />
+          <img class="w-2/3 mx-auto row-start-7 row-end-8" v-else src="../assets/punishment/delaruleta_negro.svg" alt="de la ruleta" />
+          <div
+            class="w-1/2 xl:w-3/5 2xl:w-1/2 bg-cover bg-no-repeat mx-auto row-start-9 row-end-10 self-end translate-y-4"
+            :style="{backgroundImage: `url(${dareBg})`}"
+          >
             <p
               class="font-trash-hand text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl xl:pt-3 text-center pt-1 md:pt-2"
               :class="store.state.mode == 'hot' ? 'text-black' : 'text-white'"
