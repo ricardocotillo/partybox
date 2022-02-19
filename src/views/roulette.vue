@@ -117,7 +117,7 @@
 <script setup>
 import { ref, inject, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { punishments, bgColor } from '../common'
+import { slots, secos, bgColor } from '../common'
 
 // data
 const store = inject('store')
@@ -128,23 +128,24 @@ const rouletteContainerHeight = ref('auto')
 const showDare = ref(false)
 const rotating = ref(false)
 const roulette = ref('roulette')
-const nav = ref('nav')
 const rouletteContainer = ref('rouletteContainer')
 
-const trench = 360 / punishments.slots.length
+const trench = 360 / slots.length
 const angle = ref(0)
 let start = 0
 let end = 0
 const rounds = 1.3
 
 // computed
-const p = computed(() => store.state.mode === 'hot' ? punishments.hot : punishments.tranki)
+const p = computed(() => secos[store.state.flavor])
 
 const dare = computed(() => {
-  return punishments.slots[getIndex(angle.value)]
+  return slots[getIndex(angle.value)]
 })
 
-const punishment = computed(() => p.value[getIndex(angle.value)])
+const punishment = computed(() => {
+  return p.value[getIndex(angle.value)]
+})
 
 const dareBg = computed(() => {
   const src = store.state.mode == 'hot'
