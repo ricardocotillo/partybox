@@ -6,7 +6,18 @@ import { bgColor } from './common'
 const store = inject('store')
 const route = useRoute()
 
-const flavor = computed(() => route.query.flavor)
+const flavor = computed(() => {
+  switch (route.query.flavor) {
+      case 'manzanapecadora':
+        return 'manzana'
+      case 'maraculove':
+        return 'maracuya'
+      case 'cherrypasion':
+        return 'cherry'
+      default:
+        return null
+    }
+})
 
 watch(flavor, newFlavor => {
   if (newFlavor) {
