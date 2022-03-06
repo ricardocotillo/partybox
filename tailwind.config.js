@@ -39,6 +39,9 @@ module.exports = {
         manzana: '#C9D22A',
         cherry: '#C4224F',
         maracuya: '#F4D334',
+        'naranja-light': '#ff7c00',
+        naranja: '#ff4b2f',
+        rosado: '#f54359',
       },
       fontFamily: {
         watermelon: 'Watermelon',
@@ -84,7 +87,11 @@ module.exports = {
         11: '11',
         12: '12',
         13: '13',
-      }
+      },
+      backgroundImage: {
+        'partybox-pattern': 'url(/img/PATRON.svg)',
+        'pina-pattern': 'url(/img/PATRON.svg), linear-gradient(180deg, rgba(255,124,0,1) 0%, rgba(255,75,47,1) 50%, rgba(245,67,89,1) 100%)',
+      },
     },
   },
   plugins: [],

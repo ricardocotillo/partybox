@@ -14,6 +14,8 @@ const flavor = computed(() => {
         return 'maracuya'
       case 'cherrypasion':
         return 'cherry'
+      case 'pinadembow':
+        return 'pina'
       default:
         return null
     }
@@ -31,7 +33,6 @@ watch(flavor, newFlavor => {
   <div
     class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden relative"
     :class="bgColor(store.state.flavor)"
-    style="background-image: url(/img/PATRON.svg)"
   >
     <router-view />
   </div>

@@ -34,12 +34,12 @@
       <div @click="spin" class="row-start-1 row-end-2 col-start-1 col-end-2 cursor-pointer z-10 relative">
         <div
           class="w-10 border-b-75 xl:border-b-100 border-x-25 border-x-transparent absolute -top-1/2 left-1/2 -translate-x-1/2 -z-40"
-          :class="store.state.flavor == 'cherry' ? 'border-b-black' : 'border-b-primary-green'"
+          :class="store.state.flavor == 'cherry' || store.state.flavor == 'pina' ? 'border-b-black' : 'border-b-primary-green'"
         >
         </div>
         <button
           class="shadow-xl w-20 h-20 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-44 2xl:h-44 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-trash-hand rounded-full border-4 border-white text-white cursor-pointer"
-          :class="store.state.flavor == 'cherry' ? 'bg-black' : 'bg-primary-green'"
+          :class="store.state.flavor == 'cherry' || store.state.flavor == 'pina' ? 'bg-black' : 'bg-primary-green'"
           :disabled="rotating"
         >
           Girar
@@ -65,7 +65,7 @@
         <div
           v-if="showDare"
           class="rounded-full col-start-1 col-end-1 row-start-1 row-end-1 z-20 opacity-90"
-          :class="store.state.mode == 'tranki' ? 'bg-white' : store.state.flavor == 'cherry' ? 'bg-black': 'bg-primary-green'"
+          :class="store.state.mode == 'tranki' ? 'bg-white' : store.state.flavor == 'cherry' || store.state.flavor == 'pina' ? 'bg-black': 'bg-primary-green'"
           :style="getSize()"
         >
         </div>
