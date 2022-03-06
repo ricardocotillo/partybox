@@ -1,5 +1,5 @@
 <template>
-  <div ref="nav" class="w-full shadow-md lg:hidden relative" :class="bgColor(store.state.flavor)">
+  <div ref="nav" class="w-full shadow-md lg:hidden relative" :class="appBarColor()">
     <img @click="changeLevel" class="w-24 top-1/2 -translate-y-1/2 cursor-pointer absolute left-2" src="../assets/boton_small.svg" alt="cambia de nivel" />
     <img class="w-24 md:w-32 mx-auto py-4 lg:pt-20" src="../assets/LOGO_PB.svg" alt="logo party box" />
   </div>
@@ -117,7 +117,7 @@
 <script setup>
 import { ref, inject, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { slots, secos, bgColor } from '../common'
+import { slots, secos } from '../common'
 
 // data
 const store = inject('store')
@@ -192,6 +192,20 @@ const getSize = () => {
   return size
 }
 
+const appBarColor = () => {
+  switch (store.state.flavor) {
+    case 'manzana':
+      return 'bg-manzana'
+    case 'cherry':
+      return 'bg-cherry'
+    case 'maracuya':
+      return 'bg-maracuya'
+    default:
+      return 'bg-naranja-light'
+  }
+}
+
+// hooks
 onMounted(() => {
   roulette.value.addEventListener('transitionend', e => {
     rotating.value = false
