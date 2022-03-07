@@ -1,12 +1,12 @@
 export const bgColor = (f) => {
   let pattern = {
-    backgroundImage: 'url(url(/img/PATRON.svg))',
+    backgroundImage: 'url(/img/PATRON.svg)',
     backgroundRepeat: 'repeat',
     backgroundSize: '5rem'
   }
   switch (f) {
     case 'manzana':
-      pattern.backgroundColor = '#C9D22A'
+      pattern.backgroundColor = ' #C9D22A'
       break
     case 'cherry':
       pattern.backgroundColor = '#C4224F'
