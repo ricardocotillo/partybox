@@ -90,7 +90,7 @@ module.exports = {
       },
       backgroundImage: {
         'partybox-pattern': 'url(/img/PATRON.svg)',
-        'pina-pattern': 'url(/img/PATRON.svg), linear-gradient(180deg, rgba(255,124,0,1) 0%, rgba(255,75,47,1) 50%, rgba(245,67,89,1) 100%)',
+        'pina-pattern': 'url(/img/PATRON.svg) repeat, linear-gradient(180deg, rgba(255,124,0,1) 0%, rgba(255,75,47,1) 50%, rgba(245,67,89,1) 100%)',
       },
     },
   },

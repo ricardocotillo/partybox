@@ -1,14 +1,26 @@
 export const bgColor = (f) => {
+  let pattern = {
+    backgroundImage: 'url(url(/img/PATRON.svg))',
+    backgroundRepeat: 'repeat',
+    backgroundSize: '5rem'
+  }
   switch (f) {
     case 'manzana':
-      return 'bg-manzana bg-partybox-pattern'
+      pattern.backgroundColor = '#C9D22A'
+      break
     case 'cherry':
-      return 'bg-cherry bg-partybox-pattern'
+      pattern.backgroundColor = '#C4224F'
+      break
     case 'maracuya':
-      return 'bg-maracuya bg-partybox-pattern'
+      pattern.backgroundColor = '#F4D334'
+      break
     default:
-      return 'bg-pina-pattern'
+      pattern = {
+        background: 'url(/img/PATRON.svg) center / 5rem repeat, linear-gradient(180deg, rgba(255,124,0,1) 0%, rgba(255,75,47,1) 50%, rgba(245,67,89,1) 100%)'
+      }
+      break
   }
+  return pattern
 }
 
 const manzana = ['02 secos', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos', 'medio seco', '01 seco', '02 secos', '03 secos',]

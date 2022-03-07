@@ -31,8 +31,8 @@ watch(flavor, newFlavor => {
 
 <template>
   <div
-    class="min-h-screen bg-20 bg-repeat min-w-screen overflow-hidden relative"
-    :class="bgColor(store.state.flavor)"
+    class="min-h-screen min-w-screen overflow-hidden relative"
+    :style= "bgColor(store.state.flavor)"
   >
     <router-view />
   </div>
