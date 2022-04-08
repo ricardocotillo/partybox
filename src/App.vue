@@ -1,10 +1,12 @@
 <script setup>
-import { computed, inject, watch } from 'vue'
+import { computed, inject, watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { bgColor } from './common'
 
 const store = inject('store')
 const route = useRoute()
+
+const bg = ref(null)
 
 const flavor = computed(() => {
   switch (route.query.flavor) {
@@ -24,6 +26,7 @@ const flavor = computed(() => {
 watch(flavor, newFlavor => {
   if (newFlavor) {
     store.changeFlavor(newFlavor)
+    bg.value = bgColor(store.state.flavor)
   }
 })
 
@@ -32,7 +35,7 @@ watch(flavor, newFlavor => {
 <template>
   <div
     class="min-h-screen min-w-screen overflow-hidden relative"
-    :style= "bgColor(store.state.flavor)"
+    :style= "bg"
   >
     <router-view />
   </div>
