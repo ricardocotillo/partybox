@@ -6,13 +6,26 @@
     <img class="w-60 mx-auto" src="../../assets/lemondanger/gira-la-ruleta.svg" alt="gira la ruleta" />
     <img class="w-60 mx-auto" src="../../assets/lemondanger/gato-tranki.svg" alt="gato tranki" />
     <div class="grid grid-cols-1 grid-rows-1 place-content-center place-items-center w-60 mx-auto -mt-5">
-      <img class="w-full col-start-1 row-start-1 col-span-1 row-span-1" src="../../assets/lemondanger/ruleta-de-castigos.svg" alt="ruleta de castigos" />
-      <img class="w-20 col-start-1 row-start-1 col-span-1 row-span-1" src="../../assets/lemondanger/girar.svg" alt="girar" />
+      <img
+        class="w-full col-start-1 row-start-1 col-span-1 row-span-1 transition-transform ease-roulette-out"
+        src="../../assets/lemondanger/ruleta-de-castigos.svg"
+        alt="ruleta de castigos"
+        :class="rotating ? 'duration-4000' : 'duration-0'"
+        :style="{transform: `rotate(-${angle}deg)`}"
+      />
+      <img
+        class="w-20 col-start-1 row-start-1 col-span-1 row-span-1 z-10"
+        src="../../assets/lemondanger/girar.svg"
+        alt="girar"
+        @click="spin"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
+import useRoulette from '../../common/roulette'
+const { rotating, angle, spin } = useRoulette()
 </script>
 
 <style></style>
