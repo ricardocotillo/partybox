@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-    console.log('holaaaa')
 </script>
 
 <style></style>

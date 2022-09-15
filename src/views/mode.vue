@@ -7,7 +7,6 @@
     <img @click="click('tranki')" v-show="!mode || mode == 'hot'" class="w-1/2 md:w-1/6 cursor-pointer" :src="trankiInactivoSrc" alt="tranki" />
     <img @click="click('tranki')" v-show="mode == 'tranki'" class="w-1/2 md:w-1/6 cursor-pointer" src="../assets/mode/BOTON_ACTIVO_TRANKI.svg" alt="tranki" />
   </div>
-  <router-view></router-view>
 </template>
 
 <script setup>
@@ -26,11 +25,6 @@ const click = (m) => {
   store.changeMode(m)
   mode.value = m
   setTimeout(() => router.push('roulette'), 500)
-}
-
-// created
-if (route.params.flavor == 'lemondanger') {
-  setTimeout(() => router.push({name: 'flavor-splash'}), 3000)
 }
 </script>
 

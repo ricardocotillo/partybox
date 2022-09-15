@@ -2,8 +2,8 @@ import { createWebHistory, createRouter } from 'vue-router'
 import Splash from '../views/splash.vue'
 import Roulette from '../views/roulette.vue'
 import Mode from '../views/mode.vue'
-import FlavorSplash from '../views/flavor/roulette.vue'
-import FlavorRoulette from '../views/flavor/splash.vue'
+import FlavorRoulette from '../views/flavor/roulette.vue'
+import FlavorSplash from '../views/flavor/splash.vue'
 import FlavorMode from '../views/flavor/mode.vue'
 
 const routes = [

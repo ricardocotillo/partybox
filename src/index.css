@@ -1,7 +1,12 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 [v-cloak] {
   display: none;
 }
+
+text {
+  @apply font-trash-hand;
+}
+
+@tailwind utilities;
