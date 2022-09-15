@@ -11,6 +11,8 @@ module.exports = {
       },
       spacing: {
         18: '4.5rem',
+        70: '17.5rem',
+        81: '20.25rem',
       },
       minHeight: {
         'w-screen': '100vw',
