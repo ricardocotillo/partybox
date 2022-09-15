@@ -12,7 +12,8 @@
   </div>
 </template>
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
-const route = useRoute()
+import { useRouter } from 'vue-router'
+const router = useRouter()
+setTimeout(() => router.push({name: 'flavor-roulette'}), 3000)
 </script>
 <style></style>
