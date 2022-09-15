@@ -14,6 +14,7 @@ module.exports = {
       },
       minHeight: {
         'w-screen': '100vw',
+        'screen-content': 'calc(100vh - 3.5rem)',
       },
       minWidth: {
         'h-screen': '100vh',
