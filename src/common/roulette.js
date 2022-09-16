@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { slots } from './index'
 
 export default function useRoulette() {
@@ -11,12 +11,25 @@ export default function useRoulette() {
   let end = 0
   const rounds = 1.3
 
+  const dare = computed(() => {
+    return slots[getIndex(angle.value)]
+  })
+  
+  // const punishment = computed(() => {
+  //   return p.value[getIndex(angle.value)]
+  // })
+
   const spin = () => {
     rotating.value = true
     start = angle.value
     end = start + (360 * rounds) + Math.floor(Math.random() * 360)
     end = (end - (end % trench)) + (trench)
     angle.value = end
+  }
+
+  const getIndex = (angle) => {
+    const index = Math.floor((angle + (trench/2)) / trench)
+    return index < 16 ? index : 0
   }
 
   onMounted(() => {
@@ -34,5 +47,6 @@ export default function useRoulette() {
     spin,
     roulette,
     showDare,
+    dare,
   }
 }
