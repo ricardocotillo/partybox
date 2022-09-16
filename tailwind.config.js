@@ -13,6 +13,12 @@ module.exports = {
         18: '4.5rem',
         70: '17.5rem',
         81: '20.25rem',
+        82: '20.50.rem',
+        97: '24.25rem',
+        98: '24.50rem',
+        99: '24.75rem',
+        100: '25rem',
+        120: '30rem',
       },
       minHeight: {
         'w-screen': '100vw',
