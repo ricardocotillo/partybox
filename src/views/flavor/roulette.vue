@@ -22,23 +22,33 @@
         alt="girar"
         @click="spin"
       />
-      <div v-if="showDare" class="w-full h-full col-start-1 row-start-1 col-span-1 row-span-1 z-20 bg-yellow-300 rounded-full bg-opacity-80 flex items-center cursor-pointer">
-        <transition
-          enter-from-class="opacity-0"
-          enter-active-class="duration-500 delay-500"
-          enter-to-class="opacity-100"
-          leave-from-class="opacity-100"
-          leave-active-class="duration-500"
-          leave-to-class="opacity-0"
-        >
-          <div class="w-full flex flex-col items-center">
-            <img class="w-32 md:w-52" src="../../assets/lemondanger/castigo.svg" alt="castigo" />
-            <Number class="h-16 md:h-24" :num="dare" />
-            <img class="w-32 md:w-52" src="../../assets/lemondanger/de-la-ruleta.svg" alt="de la ruleta" />
-            <Castigo class="w-32 md:w-52" :num="dare" />
-          </div>
-        </transition>
-      </div>
+      <transition
+        enter-from-class="scale-0"
+        enter-active-class="duration-500"
+        enter-to-class="scale-100"
+        leave-from-class="scale-100"
+        leave-active-class="duration-500"
+        leave-to-class="scale-0"
+        @after-enter="showContent = true"
+      >
+        <div v-if="showDare" class="w-full h-full col-start-1 row-start-1 col-span-1 row-span-1 z-20 bg-yellow-300 rounded-full bg-opacity-80 flex items-center cursor-pointer">
+          <transition
+            enter-from-class="opacity-0"
+            enter-active-class="duration-500"
+            enter-to-class="opacity-100"
+            leave-from-class="opacity-100"
+            leave-active-class="duration-500"
+            leave-to-class="opacity-0"
+          >
+            <div v-if="showContent" class="w-full flex flex-col items-center">
+              <img class="w-32 md:w-52" src="../../assets/lemondanger/castigo.svg" alt="castigo" />
+              <Number class="h-16 md:h-24" :num="dare" />
+              <img class="w-32 md:w-52" src="../../assets/lemondanger/de-la-ruleta.svg" alt="de la ruleta" />
+              <Castigo class="w-32 md:w-52" :num="dare" />
+            </div>
+          </transition>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -47,7 +57,8 @@
 import useRoulette from '../../common/roulette'
 import Number from './number.vue'
 import Castigo from './castigo.vue'
-const { rotating, angle, spin, roulette, showDare, dare } = useRoulette()
+
+const { rotating, angle, spin, roulette, showDare, dare, showContent, } = useRoulette()
 </script>
 
 <style></style>

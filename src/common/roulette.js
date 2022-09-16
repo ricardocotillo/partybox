@@ -5,6 +5,7 @@ export default function useRoulette() {
   const roulette = ref('roulette')
   const showDare = ref(false)
   const rotating = ref(false)
+  const showContent = ref(false)
   const angle = ref(0)
   const trench = 360 / slots.length
   let start = 0
@@ -14,10 +15,6 @@ export default function useRoulette() {
   const dare = computed(() => {
     return slots[getIndex(angle.value)]
   })
-  
-  // const punishment = computed(() => {
-  //   return p.value[getIndex(angle.value)]
-  // })
 
   const spin = () => {
     rotating.value = true
@@ -48,5 +45,6 @@ export default function useRoulette() {
     roulette,
     showDare,
     dare,
+    showContent,
   }
 }

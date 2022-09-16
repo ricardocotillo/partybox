@@ -64,7 +64,8 @@ module.exports = {
       },
       transitionDuration: {
         0: '0ms',
-        4000: '4000ms'
+        4000: '4000ms',
+        7000: '7000ms',
       },
       transitionTimingFunction: {
         'roulette-out': 'cubic-bezier(.17,.67,.38,.64)',
