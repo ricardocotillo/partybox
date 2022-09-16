@@ -24,10 +24,10 @@
       />
       <div class="w-full h-full col-start-1 row-start-1 col-span-1 row-span-1 z-20 bg-yellow-300 rounded-full bg-opacity-80 flex items-center">
         <div class="w-full flex flex-col items-center">
-          <img class="w-32" src="../../assets/lemondanger/castigo.svg" alt="castigo" />
-          <Number class="h-16" :num="dare" />
-          <img class="w-32" src="../../assets/lemondanger/de-la-ruleta.svg" alt="de la ruleta" />
-          <Castigo :num="dare" />
+          <img class="w-32 md:w-52" src="../../assets/lemondanger/castigo.svg" alt="castigo" />
+          <Number class="h-16 md:h-24" :num="dare" />
+          <img class="w-32 md:w-52" src="../../assets/lemondanger/de-la-ruleta.svg" alt="de la ruleta" />
+          <Castigo class="w-32 md:w-52" :num="dare" />
         </div>
       </div>
     </div>
