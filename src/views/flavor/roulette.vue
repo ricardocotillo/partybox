@@ -22,12 +22,23 @@
         alt="girar"
         @click="spin"
       />
+      <div class="w-full h-full col-start-1 row-start-1 col-span-1 row-span-1 z-20 bg-yellow-300 rounded-full bg-opacity-80 flex items-center">
+        <div class="w-full flex flex-col items-center">
+          <img class="w-32" src="../../assets/lemondanger/castigo.svg" alt="castigo" />
+          <Number class="h-16" :num="12" />
+          <img class="w-32" src="../../assets/lemondanger/de-la-ruleta.svg" alt="de la ruleta" />
+          <div class="w-32">
+            <img class="w-full" src="../../assets/lemondanger/contenedor-gris.svg" alt="contenedor gris" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import useRoulette from '../../common/roulette'
+import Number from './number.vue'
 const { rotating, angle, spin, roulette, showDare } = useRoulette()
 </script>
 
