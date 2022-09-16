@@ -13,7 +13,7 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-const router = useRouter()
-setTimeout(() => router.push({name: 'flavor-roulette'}), 3000)
+  const router = useRouter()
+  setTimeout(() => router.push({name: 'flavor-roulette'}), 3000)
 </script>
 <style></style>
