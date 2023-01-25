@@ -1,6 +1,10 @@
 <template>
   <div class="flex flex-col items-center justify-center h-screen bg-black">
-    <img class="max-w-sm mb-2" src="../../assets/promociones/promo-verano-danger.png" alt="promo verano danger" />
+    <picture class="w-full max-w-3xl mb-2">
+      <source media="(min-width: 1200px)" srcset="../../assets/promociones/bg-1200.webp">
+      <source media="(min-width: 768px)" srcset="../../assets/promociones/bg-768.webp">
+      <img src="../../assets/promociones/bg-576.webp" alt="promo verano danger" />
+    </picture>
     <label for="age" class="text-white cursor-pointer">
       <checkbox id="age" class="mr-4 border-yellow-500 rounded-md hover:checked:border-yellow-500 checked:border-yellow-500" />
       Soy mayor de edad

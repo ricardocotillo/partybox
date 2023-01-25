@@ -1,6 +1,6 @@
 <template>
-  <section class="h-screen bg-black">
-    <div class="container py-10 mx-auto">
+  <section class="h-screen bg-center bg-no-repeat bg-cover" style="background-image: url(/img/promociones/fondo-verano-danger.png)">
+    <div class="container px-2 py-10 mx-auto xl:px-0">
       <h1 class="text-3xl font-bold text-center text-white">Registro de datos personales</h1>
       <form ref="form" @submit.prevent="submit" action="" method="POST" class="flex flex-col items-center max-w-lg gap-4 mx-auto mt-10">
         <div class="flex items-center w-full gap-4">
