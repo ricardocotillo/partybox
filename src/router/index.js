@@ -8,6 +8,7 @@ import FlavorMode from '../views/flavor/mode.vue'
 import VeranoDanger from '../views/promociones/veranoDanger.vue'
 import VeranoDangerRegistro from '../views/promociones/veranoDangerRegistro.vue'
 import VeranoDangerRuleta from '../views/promociones/veranoDangerRuleta.vue'
+import VeranoDangerGanaste from '../views/promociones/veranoDangerGanaste.vue'
 
 const routes = [
   {
@@ -59,6 +60,11 @@ const routes = [
         path: 'verano-danger/ruleta/',
         name: 'verano-danger-ruleta',
         component: VeranoDangerRuleta,
+      },
+      {
+        path: 'verano-danger/ganaste/',
+        name: 'verano-danger-ganaste',
+        component: VeranoDangerGanaste,
       }
     ]
   }
