@@ -38,8 +38,10 @@
 </template>
 <script setup>
   import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
   import checkbox from '../../components/checkbox.vue'
 
+  const router = useRouter()
   const receipt = ref()
   const form = ref()
 
@@ -50,6 +52,7 @@
 
   const submit = () => {
     const formData = new FormData(form.value)
+    router.push({name: 'verano-danger-ruleta'})
   }
   
 </script>
