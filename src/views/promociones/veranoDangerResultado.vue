@@ -35,4 +35,20 @@ import { ref } from 'vue';
   if ([1, 2].includes(premio)) {
     
   }
+
+  const getCode = async () => {
+    const data = localStorage.getItem('participant')
+    const participant = JSON.parse(data)
+    const formData = new FormData()
+    formData.append('participant', participant.id)
+    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/code', {
+      method: 'POST',
+      body: formData
+    })
+
+    const j = await res.json()
+    if (res.status === 200) {
+      code.value = j.code
+    }
+  }
 </script>
