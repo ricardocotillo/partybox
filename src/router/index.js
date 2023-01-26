@@ -8,7 +8,7 @@ import FlavorMode from '../views/flavor/mode.vue'
 import VeranoDanger from '../views/promociones/veranoDanger.vue'
 import VeranoDangerRegistro from '../views/promociones/veranoDangerRegistro.vue'
 import VeranoDangerRuleta from '../views/promociones/veranoDangerRuleta.vue'
-import VeranoDangerGanaste from '../views/promociones/veranoDangerGanaste.vue'
+import veranoDangerResultado from '../views/promociones/veranoDangerResultado.vue'
 
 const routes = [
   {
@@ -43,8 +43,8 @@ const routes = [
     component: Roulette,
   },
   {
-    path: '/promociones',
-    name: 'promociones',
+    path: '/promo',
+    name: 'promo',
     children: [
       {
         path: 'verano-danger/',
@@ -62,9 +62,10 @@ const routes = [
         component: VeranoDangerRuleta,
       },
       {
-        path: 'verano-danger/ganaste/',
-        name: 'verano-danger-ganaste',
-        component: VeranoDangerGanaste,
+        path: 'verano-danger/resultado/:index',
+        name: 'verano-danger-resultado',
+        component: veranoDangerResultado,
+        props: true,
       }
     ]
   }

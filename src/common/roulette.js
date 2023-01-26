@@ -1,8 +1,6 @@
 import { ref, computed, onMounted } from 'vue'
-import { slots } from './index'
 
-export default function useRoulette() {
-  const roulette = ref('roulette')
+export default function useRoulette( roulette, slots ) {
   const showDare = ref(false)
   const rotating = ref(false)
   const showContent = ref(false)
@@ -26,7 +24,7 @@ export default function useRoulette() {
 
   const getIndex = (angle) => {
     const index = Math.floor((angle + (trench/2)) / trench)
-    return index < 16 ? index : 0
+    return index < slots.length ? index : 0
   }
 
   onMounted(() => {
