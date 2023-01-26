@@ -32,6 +32,6 @@ const router = useRouter()
 const { rotating, angle, spin, showDare, dare, showContent, } = useRoulette( roulette, slots )
 
 watchEffect(() => {
-  router.push({name: 'verano-danger-resultado', params: {index: dare.value}})
+  if (showDare.value) router.push({name: 'verano-danger-resultado', params: {index: dare.value}})
 })
 </script>

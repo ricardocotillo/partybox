@@ -7,11 +7,11 @@
         :class="{'h-screen justify-center py-0': premio == 3}"
       >
         <p v-if="code && [1, 2].includes(premio)" class="px-6 py-2 font-bold bg-white border-2 border-black">{{ code }}</p>
-        <img v-if="premio == 1" class="max-w-xs" src="../../assets/promociones/ganaste-pb.svg" alt="ganaste pb" />
-        <img v-else-if="premio == 2" class="max-w-xs" src="../../assets/promociones/ganaste-pc.svg" alt="ganaste pb" />
+        <img v-if="premio == 1" class="max-w-xs" src="../../assets/promociones/ganaste-pc.svg" alt="ganaste pb" />
+        <img v-else-if="premio == 2" class="max-w-xs" src="../../assets/promociones/ganaste-pb.svg" alt="ganaste pb" />
         <img v-else class="max-w-xs" src="../../assets/promociones/vd-sigue-participando.svg" alt="ganaste pb" />
-        <img v-if="premio == 1" src="../../assets/promociones/vd-cajas.webp" alt="cajas partybox verano danger" />
-        <img v-else-if="premio == 2" class="max-w-xs" src="../../assets/promociones/vd-cooler.webp" alt="cooler verano danger" />
+        <img v-if="premio == 1" class="max-w-xs" src="../../assets/promociones/vd-cooler.webp" alt="cooler verano danger" />
+        <img v-else-if="premio == 2" src="../../assets/promociones/vd-cajas.webp" alt="cajas partybox verano danger" />
         <img class="max-w-xs" v-if="[1, 2].includes(premio)" src="../../assets/promociones/reclamalo-en-caja.svg" alt="reclamalo en caja" />
       </div>
     </div>
@@ -33,6 +33,6 @@ import { ref } from 'vue';
 
   // created
   if ([1, 2].includes(premio)) {
-    // fetch
+    
   }
 </script>

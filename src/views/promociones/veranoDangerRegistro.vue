@@ -52,14 +52,19 @@
     receipt.value.click()
   }
 
-  const submit = () => {
-    // const formData = new FormData(form.value)
-    // fetch('http://partybox.local/wp-json/promo/verano-danger/participants', {
-    //   method: 'POST',
-    //   body: formData,
-    // })
-    // return
-    router.push({name: 'verano-danger-ruleta'})
+  const submit = async () => {
+    const formData = new FormData(form.value)
+    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/participants', {
+      method: 'POST',
+      body: formData,
+    })
+    const j = await res.json()
+    if (res.status === 201) {
+      localStorage.setItem('participant', JSON.stringify(j))
+      router.push({name: 'verano-danger-ruleta'})
+    } else {
+      console.log(j)
+    }
   }
   
 </script>
