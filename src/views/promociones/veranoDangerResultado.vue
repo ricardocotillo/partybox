@@ -29,8 +29,7 @@ import { ref } from 'vue';
   
   // data
   const code = ref('RTYUOPW')
-
-
+  
   // created
   if ([1, 2].includes(premio)) {
     
