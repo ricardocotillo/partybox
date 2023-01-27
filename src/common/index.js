@@ -14,11 +14,13 @@ export const bgColor = (f) => {
     case 'maracuya':
       pattern.backgroundColor = '#F4D334'
       break
-    default:
+    case 'pina':
       pattern = {
         background: 'url(/img/PATRON.svg) center / 5rem repeat, linear-gradient(180deg, rgba(255,124,0,1) 0%, rgba(255,75,47,1) 50%, rgba(245,67,89,1) 100%)'
       }
       break
+    default:
+      pattern.backgroundColor = '#000000'
   }
   return pattern
 }

@@ -1,7 +1,11 @@
 <template>
   <section class="min-h-screen bg-black">
     <div class="grid">
-      <img class="col-start-1 col-end-2 row-start-1 row-end-2" src="../../assets/promociones/576-fondo-datos.webp" alt="fondo verano danger">
+      <picture class="w-full col-start-1 col-end-2 row-start-1 row-end-2 mx-auto">
+        <source media="(min-width: 1200px)" srcset="../../assets/promociones/1200-fondo-datos.webp">
+        <source media="(min-width: 768px)" srcset="../../assets/promociones/768-fondo-datos.webp">
+        <img src="../../assets/promociones/576-fondo-datos.webp" alt="fondo verano danger">
+      </picture>
       <div
         class="flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-2 gap-4 py-10"
         :class="{'h-screen justify-center py-0': premio == 3}"
@@ -28,18 +32,15 @@ import { ref } from 'vue';
   const premio = Number.parseInt(index)
   
   // data
-  const code = ref('RTYUOPW')
-  
-  // created
-  if ([1, 2].includes(premio)) {
-    
-  }
+  const code = ref('')
 
+  // methods
   const getCode = async () => {
     const data = localStorage.getItem('participant')
     const participant = JSON.parse(data)
     const formData = new FormData()
     formData.append('participant', participant.id)
+    formData.append('reward', premio === 1 ? 'pc' : 'pb' )
     const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/code', {
       method: 'POST',
       body: formData
@@ -49,5 +50,10 @@ import { ref } from 'vue';
     if (res.status === 200) {
       code.value = j.code
     }
+  }
+  
+  // created
+  if ([1, 2].includes(premio)) {
+    getCode()
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center h-screen animate-wiggle">
+  <div class="flex flex-col items-center justify-center h-screen animate-wiggle">
     <img class="w-2/3 md:w-1/3" src="../assets/CUIDADO.svg" alt="cuidado" />
     <img class="w-2/3 md:w-1/3" src="../assets/PAREZCO_SUAVE.svg" alt="cuidado" />
   </div>
@@ -9,7 +9,7 @@
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-setTimeout(() => router.push('mode'), 3000)
+setTimeout(() => router.push({name: 'verano-danger'}), 3000)
 </script>
 
 <style>

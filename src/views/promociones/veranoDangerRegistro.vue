@@ -48,6 +48,12 @@
   const form = ref()
 
   // methods
+  const getWinnersCount = async () => {
+    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/winners')
+    const j = await res.json()
+    return j
+  }
+
   const attach = () => {
     receipt.value.click()
   }
@@ -59,9 +65,10 @@
       body: formData,
     })
     const j = await res.json()
-    if (res.status === 201) {
+    if ([200, 201].includes(res.status)) {
       localStorage.setItem('participant', JSON.stringify(j))
-      router.push({name: 'verano-danger-ruleta'})
+      const winners = await getWinnersCount()
+      router.push({ name: 'verano-danger-ruleta', params: { winners } })
     } else {
       console.log(j)
     }

@@ -60,6 +60,7 @@ const routes = [
         path: 'verano-danger/ruleta/',
         name: 'verano-danger-ruleta',
         component: VeranoDangerRuleta,
+        props: true,
       },
       {
         path: 'verano-danger/resultado/:index',

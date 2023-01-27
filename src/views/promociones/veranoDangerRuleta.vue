@@ -21,17 +21,27 @@
   </section>
 </template>
 <script setup>
-import { ref, watchEffect } from 'vue'
-import { useRouter } from 'vue-router'
-import useRoulette from '../../common/roulette'
-// data
-const slots = [1, 2, 3]
-const roulette = ref()
-const router = useRouter()
+  import { ref, watchEffect } from 'vue'
+  import { useRouter } from 'vue-router'
+  import useRoulette from '../../common/roulette'
+  // props
+  const props = defineProps({
+    winners: Array,
+  })
+  // data
+  const slots = [1, 2, 3]
+  const roulette = ref()
+  const router = useRouter()
 
-const { rotating, angle, spin, showDare, dare, showContent, } = useRoulette( roulette, slots )
+  const { rotating, angle, spin, showDare, dare, showContent, } = useRoulette( roulette, slots )
 
-watchEffect(() => {
-  if (showDare.value) router.push({name: 'verano-danger-resultado', params: {index: dare.value}})
-})
+  // methods
+  const getWinnersCount = async () => {
+    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/winners')
+    const j = await res.json()
+  }
+
+  watchEffect(() => {
+    if (showDare.value) router.push({name: 'verano-danger-resultado', params: {index: dare.value}})
+  })
 </script>
