@@ -67,8 +67,7 @@
     const j = await res.json()
     if ([200, 201].includes(res.status)) {
       localStorage.setItem('participant', JSON.stringify(j))
-      const winners = await getWinnersCount()
-      router.push({ name: 'verano-danger-ruleta', params: { winners } })
+      router.push({ name: 'verano-danger-ruleta' })
     } else {
       console.log(j)
     }

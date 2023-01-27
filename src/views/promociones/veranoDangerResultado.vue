@@ -41,15 +41,15 @@ import { ref } from 'vue';
     const formData = new FormData()
     formData.append('participant', participant.id)
     formData.append('reward', premio === 1 ? 'pc' : 'pb' )
-    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/code', {
-      method: 'POST',
-      body: formData
-    })
+    // const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/code', {
+    //   method: 'POST',
+    //   body: formData
+    // })
 
-    const j = await res.json()
-    if (res.status === 200) {
-      code.value = j.code
-    }
+    // const j = await res.json()
+    // if (res.status === 200) {
+    //   code.value = j.code
+    // }
   }
   
   // created

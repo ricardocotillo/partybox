@@ -5,7 +5,7 @@
       <div class="col-start-1 col-end-2 row-start-1 row-end-2 mt-20">
         <div class="w-full max-w-xs mx-auto">
           <img src="../../assets/promociones/gira-ruleta-text.svg" alt="gira la ruleta" />
-          <div class="relative">
+          <div v-show="slots.length > 1" class="relative">
             <img
               ref="roulette"
               src="../../assets/promociones/ruleta-verano-danger.svg"
@@ -21,27 +21,53 @@
   </section>
 </template>
 <script setup>
-  import { ref, watchEffect } from 'vue'
+  import { ref, watchEffect, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
-  import useRoulette from '../../common/roulette'
-  // props
-  const props = defineProps({
-    winners: Array,
-  })
   // data
-  const slots = [1, 2, 3]
+  const slots = ref([3])
+  const angle = ref(0)
+  const reward = ref(null)
+  const rotating = ref(false)
+  const showReward = ref(false)
   const roulette = ref()
   const router = useRouter()
-
-  const { rotating, angle, spin, showDare, dare, showContent, } = useRoulette( roulette, slots )
-
   // methods
   const getWinnersCount = async () => {
     const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/winners')
     const j = await res.json()
+    return j
+  }
+
+  const spin = () => {
+    const randIndex = Math.floor(Math.random() * slots.value.length)
+    const target = slots.value[randIndex]
+    reward.value = target
+    rotating.value = true
+    angle.value = ((target - 1) * 120) + (2  * 360)
   }
 
   watchEffect(() => {
-    if (showDare.value) router.push({name: 'verano-danger-resultado', params: {index: dare.value}})
+    if (showReward.value) {
+      router.push({name: 'verano-danger-resultado', params: {index: reward.value}})
+    }
+  })
+
+  // created
+  getWinnersCount()
+    .then(winners => {
+      slots.value = Array.from({length: 20})
+      winners.pc ? slots.value[0] = 1 : slots.value[0] = 3
+      winners.pb ? slots.value[1] = 2 : slots.value[1] = 3
+      slots.value[2] = 3
+      slots.value = slots.value.fill(3, 3, 20)
+    })
+  
+  // mounted
+  onMounted(() => {
+    roulette.value.addEventListener('transitionend', () => {
+      rotating.value = false
+      angle.value = angle.value % 360
+      showReward.value = true
+    })
   })
 </script>
