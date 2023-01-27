@@ -33,7 +33,7 @@
   const router = useRouter()
   // methods
   const getWinnersCount = async () => {
-    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/winners')
+    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/winners')
     const j = await res.json()
     return j
   }

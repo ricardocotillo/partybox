@@ -49,7 +49,7 @@
 
   // methods
   const getWinnersCount = async () => {
-    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/winners')
+    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/winners')
     const j = await res.json()
     return j
   }
@@ -60,7 +60,7 @@
 
   const submit = async () => {
     const formData = new FormData(form.value)
-    const res = await fetch('http://partybox.local/wp-json/promo/verano-danger/participants', {
+    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/participants', {
       method: 'POST',
       body: formData,
     })
