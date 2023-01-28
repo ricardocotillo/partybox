@@ -30,15 +30,14 @@
           <label class="flex-shrink-0 text-white" for="email">Email:</label>
           <input required type="email" name="email" id="email" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
         </div>
-        <input required ref="receipt" name="receipt" type="file" class="absolute -left-full" />
-        <button @click="attach" class="px-4 py-1 font-bold uppercase rounded-sm bg-verano-danger" type="button">Adjunta boleta aquí</button>
+        <FileInput required name="receipt" id="receipt" btnClass="font-bold uppercase rounded-sm bg-verano-danger" />
         <div class="flex flex-col items-start gap-4">
           <label for="terms" class="text-white">
-            <checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
+            <Checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
             Acepto términos y condiciones
           </label>
           <label for="data" class="text-white">
-            <checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
+            <Checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
             Acepto uso de mis datos personales
           </label>
         </div>
@@ -50,22 +49,11 @@
 <script setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
-  import checkbox from '../../components/checkbox.vue'
+  import Checkbox from '../../components/checkbox.vue'
+  import FileInput from '../../components/fileInput.vue'
 
   const router = useRouter()
-  const receipt = ref()
   const form = ref()
-
-  // methods
-  const getWinnersCount = async () => {
-    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/winners')
-    const j = await res.json()
-    return j
-  }
-
-  const attach = () => {
-    receipt.value.click()
-  }
 
   const submit = async () => {
     const formData = new FormData(form.value)
