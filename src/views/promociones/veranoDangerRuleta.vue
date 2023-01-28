@@ -8,11 +8,11 @@
       </picture>
       <div class="col-start-1 col-end-2 row-start-1 row-end-2 mt-20">
         <div class="w-full max-w-xs mx-auto">
-          <img src="../../assets/promociones/ruleta.webp" alt="gira la ruleta" />
+          <img src="../../assets/promociones/gira-ruleta-text.svg" alt="gira la ruleta" />
           <div v-show="slots.length > 1" class="relative">
             <img
               ref="roulette"
-              src="../../assets/promociones/ruleta-verano-danger.svg"
+              src="../../assets/promociones/ruleta.webp"
               :class="rotating ? 'duration-4000' : 'duration-0'"
               :style="{transform: `rotate(-${angle}deg)`}"
               alt="ruleta verano danger"
@@ -27,6 +27,7 @@
 <script setup>
   import { ref, watchEffect, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
+
   // data
   const slots = ref([3])
   const angle = ref(0)
@@ -35,6 +36,7 @@
   const showReward = ref(false)
   const roulette = ref()
   const router = useRouter()
+
   // methods
   const getWinnersCount = async () => {
     const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/winners')
