@@ -16,44 +16,47 @@
         <img v-else class="max-w-xs" src="../../assets/promociones/vd-sigue-participando.svg" alt="ganaste pb" />
         <img v-if="premio == 1" class="max-w-xs" src="../../assets/promociones/vd-cooler.webp" alt="cooler verano danger" />
         <img v-else-if="premio == 2" src="../../assets/promociones/vd-cajas.webp" alt="cajas partybox verano danger" />
-        <img class="max-w-xs" v-if="[1, 2].includes(premio)" src="../../assets/promociones/reclamalo-en-caja.svg" alt="reclamalo en caja" />
       </div>
     </div>
   </section>
 </template>
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router'
 
-  // props
-  const props = defineProps({
-    index: String,
+const router = useRouter()
+
+// props
+const props = defineProps({
+  index: String,
+})
+const { index } = props
+const premio = Number.parseInt(index)
+
+// data
+const code = ref('')
+
+// methods
+const getCode = async () => {
+  const data = localStorage.getItem('participant')
+  const participant = JSON.parse(data)
+  const formData = new FormData()
+  formData.append('participant', participant.id)
+  formData.append('reward', premio === 1 ? 'pc' : 'pb' )
+  const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/code', {
+    method: 'POST',
+    body: formData
   })
-  const { index } = props
-  const premio = Number.parseInt(index)
-  
-  // data
-  const code = ref('')
 
-  // methods
-  const getCode = async () => {
-    const data = localStorage.getItem('participant')
-    const participant = JSON.parse(data)
-    const formData = new FormData()
-    formData.append('participant', participant.id)
-    formData.append('reward', premio === 1 ? 'pc' : 'pb' )
-    // const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/code', {
-    //   method: 'POST',
-    //   body: formData
-    // })
+  const j = await res.json()
+  if (res.status === 200) {
+    code.value = j.code
+    setTimeout(() => router.push({name: 'verano-danger-revisa', params: {index: index}}), 3000)
+  }
+}
 
-    // const j = await res.json()
-    // if (res.status === 200) {
-    //   code.value = j.code
-    // }
-  }
-  
-  // created
-  if ([1, 2].includes(premio)) {
-    getCode()
-  }
+// created
+if ([1, 2].includes(premio)) {
+  getCode()
+}
 </script>
