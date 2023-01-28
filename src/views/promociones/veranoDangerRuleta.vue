@@ -8,7 +8,7 @@
       </picture>
       <div class="col-start-1 col-end-2 row-start-1 row-end-2 mt-20">
         <div class="w-full max-w-xs mx-auto">
-          <img src="../../assets/promociones/gira-ruleta-text.svg" alt="gira la ruleta" />
+          <img src="../../assets/promociones/ruleta.webp" alt="gira la ruleta" />
           <div v-show="slots.length > 1" class="relative">
             <img
               ref="roulette"
