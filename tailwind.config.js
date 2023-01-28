@@ -48,6 +48,7 @@ module.exports = {
         100: '100px',
       },
       colors: {
+        'verano-danger': '#FFCE00',
         'primary-green': '#00993D',
         manzana: '#C9D22A',
         cherry: '#C4224F',

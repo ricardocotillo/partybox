@@ -1,39 +1,48 @@
 <template>
-  <section class="h-screen bg-center bg-no-repeat bg-cover" style="background-image: url(/img/promociones/fondo-verano-danger.png)">
-    <div class="container px-2 py-10 mx-auto xl:px-0">
+  <section class="grid min-h-screen bg-black">
+    <picture class="col-start-1 col-end-2 row-start-1 row-end-2">
+      <source media="(min-width: 1200px)" srcset="../../assets/promociones/1200-fondo-datos.webp">
+      <source media="(min-width: 768px)" srcset="../../assets/promociones/768-fondo-datos.webp">
+      <img class="w-full max-w-5xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
+    </picture>
+    <div class="container col-start-1 col-end-2 row-start-1 row-end-2 px-2 py-10 mx-auto xl:px-0">
       <h1 class="text-3xl font-bold text-center text-white">Registro de datos personales</h1>
       <form ref="form" @submit.prevent="submit" action="" method="POST" class="flex flex-col items-center max-w-lg gap-4 mx-auto mt-10">
         <div class="flex items-center w-full gap-2">
           <label class="flex-shrink-0 text-white" for="full-name">Nombres y Apellidos:</label>
-          <input required type="text" name="full_name" id="full-name" class="w-full leading-3 rounded-sm flex-grow-1 focus:border-yellow-500 focus:outline-none focus:ring-yellow-500" />
+          <input required type="text" name="full_name" id="full-name" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
         </div>
-        <div class="flex gap-2">
+        <div class="flex w-full gap-2">
           <div class="flex items-center w-full gap-2">
             <label class="flex-shrink-0 text-white" for="dni">DNI:</label>
-            <input required type="text" name="dni" id="dni" class="w-full leading-3 rounded-sm flex-grow-1 focus:border-yellow-500 focus:outline-none focus:ring-yellow-500" />
+            <input required type="text" name="dni" id="dni" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
           </div>
           <div class="flex items-center w-full gap-2">
             <label class="flex-shrink-0 text-white" for="phone">Cel:</label>
-            <input required type="tel" name="phone" id="phone" class="w-full leading-3 rounded-sm flex-grow-1 focus:border-yellow-500 focus:outline-none focus:ring-yellow-500" />
+            <input required type="tel" name="phone" id="phone" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
           </div>
         </div>
         <div class="flex items-center w-full gap-2">
           <label class="flex-shrink-0 text-white" for="receipt-code">Número de boleta:</label>
-          <input required type="text" name="receipt_code" id="receipt-code" class="w-full leading-3 rounded-sm flex-grow-1 focus:border-yellow-500 focus:outline-none focus:ring-yellow-500" />
+          <input required type="text" name="receipt_code" id="receipt-code" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
+        </div>
+        <div class="flex items-center w-full gap-2">
+          <label class="flex-shrink-0 text-white" for="email">Email:</label>
+          <input required type="email" name="email" id="email" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
         </div>
         <input required ref="receipt" name="receipt" type="file" class="absolute -left-full" />
-        <button @click="attach" class="px-4 py-1 font-bold uppercase bg-yellow-500 rounded-sm" type="button">Adjunta boleta aquí</button>
+        <button @click="attach" class="px-4 py-1 font-bold uppercase rounded-sm bg-verano-danger" type="button">Adjunta boleta aquí</button>
         <div class="flex flex-col items-start gap-4">
           <label for="terms" class="text-white">
-            <checkbox required id="terms" class="mr-4 border-yellow-500 rounded-md hover:checked:border-yellow-500 checked:border-yellow-500" />
+            <checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
             Acepto términos y condiciones
           </label>
           <label for="data" class="text-white">
-            <checkbox required id="data" class="mr-4 border-yellow-500 rounded-md hover:checked:border-yellow-500 checked:border-yellow-500" />
+            <checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
             Acepto uso de mis datos personales
           </label>
         </div>
-        <button class="px-4 py-1 mt-10 font-bold uppercase bg-yellow-500 rounded-sm" type="submit">Regístrate</button>
+        <button class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
       </form>
     </div>
   </section>

@@ -8,7 +8,8 @@ import FlavorMode from '../views/flavor/mode.vue'
 import VeranoDanger from '../views/promociones/veranoDanger.vue'
 import VeranoDangerRegistro from '../views/promociones/veranoDangerRegistro.vue'
 import VeranoDangerRuleta from '../views/promociones/veranoDangerRuleta.vue'
-import veranoDangerResultado from '../views/promociones/veranoDangerResultado.vue'
+import VeranoDangerResultado from '../views/promociones/veranoDangerResultado.vue'
+import VeranoDangerRevisa from '../views/promociones/veranoDangerRevisa.vue'
 
 const routes = [
   {
@@ -65,7 +66,13 @@ const routes = [
       {
         path: 'verano-danger/resultado/:index',
         name: 'verano-danger-resultado',
-        component: veranoDangerResultado,
+        component: VeranoDangerResultado,
+        props: true,
+      },
+      {
+        path: 'verano-danger/revisa/:index',
+        name: 'verano-danger-revisa',
+        component: VeranoDangerRevisa,
         props: true,
       }
     ]
