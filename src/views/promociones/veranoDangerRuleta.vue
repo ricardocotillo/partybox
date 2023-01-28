@@ -1,7 +1,11 @@
 <template>
   <section class="h-screen bg-black">
     <div class="container grid mx-auto">
-      <img class="col-start-1 col-end-2 row-start-1 row-end-2" src="../../assets/promociones/576-fondo-datos.webp" alt="">
+      <picture class="col-start-1 col-end-2 row-start-1 row-end-2">
+        <source media="(min-width: 1200px)" srcset="../../assets/promociones/1200-fondo-datos.webp">
+        <source media="(min-width: 768px)" srcset="../../assets/promociones/768-fondo-datos.webp">
+        <img class="w-full max-w-3xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
+      </picture>
       <div class="col-start-1 col-end-2 row-start-1 row-end-2 mt-20">
         <div class="w-full max-w-xs mx-auto">
           <img src="../../assets/promociones/gira-ruleta-text.svg" alt="gira la ruleta" />

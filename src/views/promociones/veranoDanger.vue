@@ -3,7 +3,7 @@
     <picture>
       <source media="(min-width: 1200px)" srcset="../../assets/promociones/bg-1200.webp">
       <source media="(min-width: 768px)" srcset="../../assets/promociones/bg-768.webp">
-      <img class="w-full max-w-5xl mb-2" src="../../assets/promociones/bg-576.webp" alt="promo verano danger" />
+      <img class="w-full max-w-3xl mb-2" src="../../assets/promociones/bg-576.webp" alt="promo verano danger" />
     </picture>
     <form @submit.prevent="isAdult" class="flex flex-col">
       <label for="age" class="text-white cursor-pointer">

@@ -3,7 +3,7 @@
     <picture class="col-start-1 col-end-2 row-start-1 row-end-2">
       <source media="(min-width: 1200px)" srcset="../../assets/promociones/1200-fondo-datos.webp">
       <source media="(min-width: 768px)" srcset="../../assets/promociones/768-fondo-datos.webp">
-      <img class="w-full max-w-5xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
+      <img class="w-full max-w-3xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
     </picture>
     <div class="container col-start-1 col-end-2 row-start-1 row-end-2 px-2 py-10 mx-auto xl:px-0">
       <h1 class="text-3xl font-bold text-center text-white">Registro de datos personales</h1>
