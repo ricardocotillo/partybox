@@ -6,7 +6,7 @@
       <img class="w-full max-w-3xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
     </picture>
     <div class="container col-start-1 col-end-2 row-start-1 row-end-2 px-2 py-10 mx-auto xl:px-0">
-      <h1 class="text-3xl font-bold text-center text-white">Registro de datos personales</h1>
+      <h1 class="text-2xl font-bold text-center text-white">Registro de datos personales</h1>
       <form ref="form" @submit.prevent="submit" action="" method="POST" class="flex flex-col items-center max-w-lg gap-4 mx-auto mt-10">
         <div class="flex items-center w-full gap-2">
           <label class="flex-shrink-0 text-white" for="full-name">Nombres y Apellidos:</label>
