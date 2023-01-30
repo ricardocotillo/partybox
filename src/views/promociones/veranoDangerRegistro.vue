@@ -34,7 +34,7 @@
         <div class="flex flex-col items-start gap-4">
           <label for="terms" class="text-white">
             <Checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
-            Acepto términos y condiciones
+            Acepto <RouterLink to="/promo/verano-danger/terminos" class="text-verano-danger">términos y condiciones</RouterLink>
           </label>
           <label for="data" class="text-white">
             <Checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
