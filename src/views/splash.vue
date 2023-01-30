@@ -1,9 +1,9 @@
 <template>
-  <!-- <div class="flex flex-col items-center justify-center h-screen animate-wiggle">
+  <div v-if="isFlavor" class="flex flex-col items-center justify-center h-screen animate-wiggle">
     <img class="w-2/3 md:w-1/3" src="../assets/CUIDADO.svg" alt="cuidado" />
     <img class="w-2/3 md:w-1/3" src="../assets/PAREZCO_SUAVE.svg" alt="cuidado" />
-  </div> -->
-  <div class="flex items-center justify-center min-h-screen bg-black">
+  </div>
+  <div v-else class="flex items-center justify-center min-h-screen bg-black">
     <picture>
       <source media="(min-width: 1200px)" srcset="../assets/promociones/bg-1200.webp">
       <source media="(min-width: 768px)" srcset="../assets/promociones/bg-768.webp">
@@ -13,10 +13,23 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
-setTimeout(() => router.push({name: 'verano-danger'}), 3000)
+const route = useRoute()
+
+// data
+const delay = 3000
+const isFlavor = ref(false)
+
+// created
+if (Object.keys(route.query).length) {
+  isFlavor.value = true
+  setTimeout(() => router.push('mode'), delay)
+} else {
+  setTimeout(() => router.push({name: 'verano-danger'}), delay)
+}
 </script>
 
 <style>
