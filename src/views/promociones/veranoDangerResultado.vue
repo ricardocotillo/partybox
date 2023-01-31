@@ -31,10 +31,12 @@ const props = defineProps({
   index: String,
 })
 const { index } = props
-const premio = Number.parseInt(index)
 
 // data
+// const baseUrl = 'https://cms.partybox.com.pe'
+const baseUrl = 'https://partybox.local'
 const code = ref('')
+const premio = Number.parseInt(index)
 
 // methods
 const getCode = async () => {
@@ -43,7 +45,7 @@ const getCode = async () => {
   const formData = new FormData()
   formData.append('participant', participant.id)
   formData.append('reward', premio === 1 ? 'pc' : 'pb' )
-  const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/code', {
+  const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/code`, {
     method: 'POST',
     body: formData
   })
@@ -56,6 +58,7 @@ const getCode = async () => {
 }
 
 // created
+localStorage.removeItem('participant')
 if ([1, 2].includes(premio)) {
   getCode()
 }

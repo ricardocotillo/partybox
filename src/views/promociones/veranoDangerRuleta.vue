@@ -25,10 +25,12 @@
   </section>
 </template>
 <script setup>
-  import { ref, watchEffect, onMounted } from 'vue'
+  import { ref, watchEffect, onMounted, computed } from 'vue'
   import { useRouter } from 'vue-router'
 
   // data
+  // const baseUrl = 'https://cms.partybox.com.pe'
+  const baseUrl = 'https://partybox.local'
   const slots = ref([3])
   const angle = ref(0)
   const reward = ref(null)
@@ -36,10 +38,14 @@
   const showReward = ref(false)
   const roulette = ref()
   const router = useRouter()
+  const participant = JSON.parse(localStorage.getItem('participant') || '{}')
+  console.log(participant)
+  const chances = participant.receipts?.filter(r => !r.played).length
+  let timesPlayed = 0
 
   // methods
   const getWinnersCount = async () => {
-    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/winners')
+    const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/winners`)
     const j = await res.json()
     return j
   }
@@ -52,20 +58,14 @@
     angle.value = ((target - 1) * 120) + (2  * 360)
   }
 
-  watchEffect(() => {
-    if (showReward.value) {
-      router.push({name: 'verano-danger-resultado', params: {index: reward.value}})
-    }
-  })
-
   // created
+  if (!participant.id) router.push({name: 'verano-danger-registro'})
   getWinnersCount()
     .then(winners => {
-      slots.value = Array.from({length: 20})
-      winners.pc ? slots.value[0] = 1 : slots.value[0] = 3
-      winners.pb ? slots.value[1] = 2 : slots.value[1] = 3
-      slots.value[2] = 3
-      slots.value = slots.value.fill(3, 3, 20)
+      slots.value = Array.from({length: 50})
+      winners.pc || participant.pc_code ? slots.value[0] = 3 : slots.value[0] = 1 
+      winners.pb || participant.pb_code ? slots.value[1] = 3 : slots.value[1] = 2
+      slots.value = slots.value.fill(3, 2, 50)
     })
   
   // mounted
@@ -73,7 +73,21 @@
     roulette.value.addEventListener('transitionend', () => {
       rotating.value = false
       angle.value = angle.value % 360
-      showReward.value = true
+      const formData = new FormData()
+      formData.append('participant', participant.id)
+      fetch(`${baseUrl}/wp-json/promo/verano-danger/played`, {
+        method: 'POST',
+        body: formData,
+      })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('participant', JSON.stringify(data))
+          showReward.value = true
+          timesPlayed += 1
+          if (showReward.value && ([1, 2].includes(reward.value) || timesPlayed >= chances)) {
+            router.push({name: 'verano-danger-resultado', params: {index: reward.value}})
+          }
+        })
     })
   })
 </script>

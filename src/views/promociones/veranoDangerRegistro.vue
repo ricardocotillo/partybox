@@ -51,13 +51,14 @@
   import { useRouter } from 'vue-router'
   import Checkbox from '../../components/checkbox.vue'
   import FileInput from '../../components/fileInput.vue'
-
+  // const baseUrl = 'https://cms.partybox.com.pe'
+  const baseUrl = 'https://partybox.local'
   const router = useRouter()
   const form = ref()
 
   const submit = async () => {
     const formData = new FormData(form.value)
-    const res = await fetch('https://cms.partybox.com.pe/wp-json/promo/verano-danger/participants', {
+    const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
       body: formData,
     })
