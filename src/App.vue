@@ -37,23 +37,34 @@ watch(flavor, newFlavor => {
     class="relative min-h-screen overflow-hidden min-w-screen"
     :style= "bg"
   >
-    <template v-if="route.path.includes('promo')">
+    <div
+      v-if="route.path.includes('promo')"
+      class="fixed bottom-0 flex items-center justify-between w-full gap-2 px-3 pb-5 bg-black"
+    >
       <a
         target="_blank"
-        href="https://cms.partybox.com.pe/app/uploads/2023/02/Preguntas-Frecuentes.pdf"
+        href="https://cms.partybox.com.pe/app/uploads/2023/02/preguntas-frecuentes.pdf"
         download
-        class="fixed flex items-center justify-center text-3xl text-white rounded-full bottom-5 left-5 w-14 aspect-square"
+        class="w-24"
       >
-        <i class="lar la-question-circle"></i>
+        <img src="./assets/promociones/btn-preguntas-frecuentes.svg" alt="preguntas frecuentes" />
+      </a>
+      <a
+        target="_blank"
+        href="https://cms.partybox.com.pe/app/uploads/2023/02/como-participar.pdf"
+        download
+        class="w-28"
+      >
+        <img src="./assets/promociones/btn-como-participar.svg" alt="como participar" />
       </a>
       <a
         target="_blank"
         href="https://wa.me/51993920507"
-        class="fixed flex items-center justify-center text-3xl text-white bg-green-500 rounded-full bottom-5 right-5 w-14 aspect-square"
+        class="flex items-center justify-center text-3xl text-white bg-green-500 rounded-full w-14 aspect-square"
       >
         <i class="lab la-whatsapp"></i>
       </a>
-    </template>
+    </div>
     <router-view />
   </div>
 </template>

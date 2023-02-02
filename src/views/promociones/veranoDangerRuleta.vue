@@ -62,10 +62,10 @@
   if (!participant.id) router.push({name: 'verano-danger-registro'})
   getWinnersCount()
     .then(winners => {
-      slots.value = Array.from({length: 50})
+      slots.value = Array.from({length: 30})
       winners.pc || participant.pc_code ? slots.value[0] = 3 : slots.value[0] = 1 
       winners.pb || participant.pb_code ? slots.value[1] = 3 : slots.value[1] = 2
-      slots.value = slots.value.fill(3, 2, 50)
+      slots.value = slots.value.fill(3, 2, 30)
     })
   
   // mounted
