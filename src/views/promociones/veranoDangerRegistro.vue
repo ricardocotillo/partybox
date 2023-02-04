@@ -34,14 +34,14 @@
         <div class="flex flex-col items-start gap-4">
           <label for="terms" class="text-white">
             <Checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
-            Acepto <RouterLink to="/promo/verano-danger/terminos" class="text-verano-danger">términos y condiciones</RouterLink>
+            Acepto <RouterLink to="/promo/verano-danger/terminos" class="text-verano-danger">Términos y condiciones</RouterLink>
           </label>
           <label for="data" class="text-white">
             <Checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
-            Acepto uso de mis datos personales
+            Acepto el uso del TRATAMIENTO de datos personales
           </label>
         </div>
-        <button class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
+        <button :disabled="loading" @click="validate" class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
       </form>
     </div>
   </section>
@@ -49,20 +49,34 @@
 <script setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { toast } from 'vue3-toastify'
   import Checkbox from '../../components/checkbox.vue'
   import FileInput from '../../components/fileInput.vue'
-  const baseUrl = 'https://cms.partybox.com.pe'
-  // const baseUrl = 'https://partybox.local'
+
   const router = useRouter()
+  
+  //data
+  // const baseUrl = 'https://partybox.local'
+  const baseUrl = 'https://cms.partybox.com.pe'
   const form = ref()
+  const loading = ref(false)
+
+  // methods
+  const validate = () => {
+    if (!form.value.receipt.value) {
+      toast.warn('Por favor adjunta una boleta', {autoClose: 1000})
+    }
+  }
 
   const submit = async () => {
+    loading.value = true
     const formData = new FormData(form.value)
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
       body: formData,
     })
     const j = await res.json()
+    loading.value = false
     if ([200, 201].includes(res.status)) {
       localStorage.setItem('participant', JSON.stringify(j))
       router.push({ name: 'verano-danger-ruleta' })
