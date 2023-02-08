@@ -8,7 +8,7 @@
             class="c9 c1">C</span></li>
       </ol>
       <p class="c7 c8"><span class="c2"></span></p>
-      <p class="c7"><span class="c1">Vigencia</span><span class="c3">: Del 01/02/2023 al 31/03/2023</span></p>
+      <p class="c7"><span class="c1">Vigencia</span><span class="c3">: Del 10/02/2023 al 10/04/2023</span></p>
       <p class="c7"><span class="c1">Territorio:</span><span class="c3">&nbsp;Actividad desarrollada dentro de
         </span><span class="c3">Lima, Per&uacute;</span></p>
       <p class="c7"><span class="c1">Organizador:</span><span class="c3">&nbsp;Bebidas Premium </span><span
@@ -137,11 +137,11 @@
           a
           Stock de cada </span><span class="c3">T</span><span class="c3">ienda Tambo </span><span class="c2">Lima,
           v&aacute;lido en los sabores Maraculove, Cherry Pasi&oacute;n, Manzana Pecadora, Pi&ntilde;a Dembow y Lemon
-          Danger) a partir del 01/02/2023 hasta el 31/03/2023.</span></p>
-      <p class="c7"><span class="c3">Premio diario de un Cooler a partir del 01/02/2023 hasta el 31/03/2023. La entrega
+          Danger) a partir del 10/02/2023 hasta el 10/04/2023.</span></p>
+      <p class="c7"><span class="c3">Premio diario de un Cooler a partir del 10/02/2023 hasta el 10/04/2023. La entrega
           de
-          los coolers se har&aacute; efectiva a partir del </span><span class="c3">01</span><span
-          class="c3">/03/2023</span><span class="c3">&nbsp;de lunes a </span><span class="c3">Viernes</span><span
+          los coolers se har&aacute; efectiva a partir del </span><span class="c3">15</span><span
+          class="c3">/03/2023</span> al 31/04/2023<span class="c3">&nbsp;de lunes a </span><span class="c3">Viernes</span><span
           class="c3">&nbsp;en la siguiente direcci&oacute;n Av. Paseo de la Republica </span><span class="c3">3617,
           San Isidro</span><span class="c3">&nbsp;y en los siguientes horarios </span><span class="c3">9</span><span
           class="c3">&nbsp;am </span><span class="c3">&ndash;</span><span class="c3">&nbsp;4</span><span
@@ -180,7 +180,7 @@
       <p class="c7 c8"><span class="c2"></span></p>
       <ul class="c4 lst-kix_list_4-0 start">
         <li class="c5 li-bullet-0"><span class="c2">Esta Actividad Promocional</span><span class="c2">&nbsp;es por
-            tiempo limitado y estar&aacute; vigente desde el 01 de febrero de 2023 a las 09:00 hasta el 31 de marzo
+            tiempo limitado y estar&aacute; vigente desde el 10 de febrero de 2023 a las 09:00 hasta el 10 de abril
             de 2023 a las 10:30 p.m. No se aceptar&aacute;n </span><span class="c2">p</span><span
             class="c2">articipaciones ni reportes de ganadores despu&eacute;s de la hora y fechas aqu&iacute;
             establecidas.</span></li>
