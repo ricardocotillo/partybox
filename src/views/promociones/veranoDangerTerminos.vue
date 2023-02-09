@@ -1262,7 +1262,6 @@ ol.lst-kix_list_7-0 {
 
         .c9 {
             -webkit-text-decoration-skip: none;
-            color: #000000;
             font-weight: 700;
             text-decoration: underline;
             vertical-align: baseline;
@@ -1273,7 +1272,6 @@ ol.lst-kix_list_7-0 {
         }
 
         .c1 {
-            color: #000000;
             font-weight: 700;
             text-decoration: none;
             vertical-align: baseline;
@@ -1283,7 +1281,6 @@ ol.lst-kix_list_7-0 {
         }
 
         .c0 {
-            color: #000000;
             font-weight: 400;
             text-decoration: none;
             vertical-align: baseline;
@@ -1303,7 +1300,6 @@ ol.lst-kix_list_7-0 {
 
         .c12 {
             -webkit-text-decoration-skip: none;
-            color: #000000;
             text-decoration: underline;
             vertical-align: baseline;
             text-decoration-skip-ink: none;
@@ -1389,7 +1385,6 @@ ol.lst-kix_list_7-0 {
 
         .title {
             padding-top: 24pt;
-            color: #000000;
             font-weight: 700;
             font-size: 36pt;
             padding-bottom: 6pt;
@@ -1416,21 +1411,18 @@ ol.lst-kix_list_7-0 {
         }
 
         li {
-            color: #000000;
             font-size: 12pt;
             font-family: "Calibri"
         }
 
         p {
             margin: 0;
-            color: #000000;
             font-size: 12pt;
             font-family: "Calibri"
         }
 
         h1 {
             padding-top: 24pt;
-            color: #000000;
             font-weight: 700;
             font-size: 24pt;
             padding-bottom: 6pt;
@@ -1444,7 +1436,6 @@ ol.lst-kix_list_7-0 {
 
         h2 {
             padding-top: 18pt;
-            color: #000000;
             font-weight: 700;
             font-size: 18pt;
             padding-bottom: 4pt;
@@ -1458,7 +1449,6 @@ ol.lst-kix_list_7-0 {
 
         h3 {
             padding-top: 14pt;
-            color: #000000;
             font-weight: 700;
             font-size: 14pt;
             padding-bottom: 4pt;
@@ -1472,7 +1462,6 @@ ol.lst-kix_list_7-0 {
 
         h4 {
             padding-top: 12pt;
-            color: #000000;
             font-weight: 700;
             font-size: 12pt;
             padding-bottom: 2pt;
@@ -1486,7 +1475,6 @@ ol.lst-kix_list_7-0 {
 
         h5 {
             padding-top: 11pt;
-            color: #000000;
             font-weight: 700;
             font-size: 11pt;
             padding-bottom: 2pt;
@@ -1500,7 +1488,6 @@ ol.lst-kix_list_7-0 {
 
         h6 {
             padding-top: 10pt;
-            color: #000000;
             font-weight: 700;
             font-size: 10pt;
             padding-bottom: 2pt;
