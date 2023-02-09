@@ -51,6 +51,7 @@ const getCode = async () => {
   })
 
   const j = await res.json()
+  localStorage.removeItem('participant')
   if (res.status === 200) {
     code.value = j.code
     setTimeout(() => router.push({name: 'verano-danger-revisa', params: {index: index}}), 3000)
@@ -58,7 +59,6 @@ const getCode = async () => {
 }
 
 // created
-localStorage.removeItem('participant')
 if ([1, 2].includes(premio)) {
   getCode()
 }
