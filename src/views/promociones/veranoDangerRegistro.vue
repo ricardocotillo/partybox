@@ -109,10 +109,6 @@
 
     if (!fnIsLength || !dniIsNumeric || !dniIsLength) return
     const formData = new FormData(form.value)
-    const b = await readFile(file.value)
-    formData.delete('receipt')
-    formData.append('receipt', b, file.value.name)
-    formData.get('receipt')
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
       body: formData,
