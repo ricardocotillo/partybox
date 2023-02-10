@@ -13,7 +13,7 @@
         <img v-if="reward == 1" class="max-w-xs" src="../../assets/promociones/ganaste-pc.svg" alt="ganaste pb" />
         <img v-else-if="reward == 2" class="max-w-xs" src="../../assets/promociones/ganaste-pb.svg" alt="ganaste pb" />
         <img v-else class="max-w-xs" src="../../assets/promociones/vd-sigue-participando.svg" alt="ganaste pb" />
-        <img v-if="reward == 1" class="max-w-xs" src="../../assets/promociones/COOLER CON LUCES Y SOMBRAS.png" alt="cooler verano danger" />
+        <img v-if="reward == 1" class="max-w-xs" src="../../assets/promociones/COOLER-CON-LUCES-Y-SOMBRAS.png" alt="cooler verano danger" />
         <img v-else-if="reward == 2" src="../../assets/promociones/vd-cajas.webp" alt="cajas partybox verano danger" />
       </div>
     </div>
