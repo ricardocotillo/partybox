@@ -50,6 +50,7 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { toast } from 'vue3-toastify'
+  import validator from 'validator'
   import Checkbox from '../../components/checkbox.vue'
   import FileInput from '../../components/fileInput.vue'
 
@@ -70,6 +71,19 @@
 
   const submit = async () => {
     loading.value = true
+    const dni = form.value.dni.value
+    const dniIsNumeric = validator.isNumeric(dni)
+    const dniIsLength = validator.isLength(dni, {min: 8, max: 8})
+
+    if (!dniIsNumeric) {
+      loading.value = false
+      return toast.warn('Por favor ingrese un número de DNI válido')
+    }
+    if (!dniIsLength) {
+      loading.value = false
+      return toast.warn('El número de DNI debe ser de exactamente 8 dígitos')
+    }
+  
     const formData = new FormData(form.value)
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
