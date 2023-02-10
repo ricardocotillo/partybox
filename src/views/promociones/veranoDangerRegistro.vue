@@ -103,7 +103,6 @@
     const j = await res.json()
     loading.value = false
     if ([200, 201].includes(res.status)) {
-      console.log(j)
       localStorage.setItem('participant', JSON.stringify(j))
       router.push({ name: 'verano-danger-ruleta' })
     } else {

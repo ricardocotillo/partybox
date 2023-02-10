@@ -19,7 +19,8 @@
     </div>
     <div class="container z-10 flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-2 gap-8 px-2 mx-auto lg:px-0">
       <img class="w-56 md:w-72" src="../../assets/promociones/LANDING-22.svg" alt="revisa tu correo" />
-      <img v-if="[1, 2].includes(reward)" class="max-w-xl" src="../../assets/promociones/LANDING-23.svg" alt="texto ganador" />
+      <img v-if="reward == 1" class="max-w-xl" src="../../assets/promociones/LANDING-23.svg" alt="texto ganador" />
+      <img v-else-if="reward == 2" class="max-w-xl" src="../../assets/promociones/LANDING-24.svg" alt="texto ganador" />
     </div>
     <div class="h-28"></div>
   </section>
