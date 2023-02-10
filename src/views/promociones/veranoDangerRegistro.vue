@@ -71,19 +71,6 @@
     }
   }
 
-  const readFile = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const f = e.target.result
-        fetch(f)
-          .then(res => res.blob())
-          .then(b => resolve(b))
-      }
-      reader.readAsDataURL(file)  
-    })
-  }
-
   const submit = async () => {
     loading.value = true
     const fullName = form.value.full_name.value
@@ -116,7 +103,6 @@
     const j = await res.json()
     console.log(j)
     loading.value = false
-    return
     if ([200, 201].includes(res.status)) {
       localStorage.setItem('participant', JSON.stringify(j))
       router.push({ name: 'verano-danger-ruleta' })
