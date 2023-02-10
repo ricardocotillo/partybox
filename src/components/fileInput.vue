@@ -30,6 +30,7 @@ const onClick = () => {
   else field.value.click()
 }
 const onChange = e => {
+  console.log(e.target.files)
   icon.value = e.target.files.length
   let file = null
   if (icon.value) file = e.target.files[0]
