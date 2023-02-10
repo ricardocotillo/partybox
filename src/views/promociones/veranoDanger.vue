@@ -12,6 +12,7 @@
       </label>
       <button class="px-3 py-1 mt-4 font-bold uppercase rounded-md bg-verano-danger">Participar aquí</button>
     </form>
+    <div class="h-28"></div>
   </div>
 </template>
 <script setup>
