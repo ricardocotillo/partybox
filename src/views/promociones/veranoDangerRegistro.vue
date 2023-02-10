@@ -38,7 +38,7 @@
           </label>
           <label for="data" class="text-white">
             <Checkbox required id="data" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
-            Acepto el uso del TRATAMIENTO de datos personales
+            Acepto el uso del tratamiento de datos personales
           </label>
         </div>
         <button :disabled="loading" @click="validate" class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
