@@ -44,6 +44,7 @@
         <button :disabled="loading" @click="validate" class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
       </form>
     </div>
+    <div class="h-28"></div>
   </section>
 </template>
 <script setup>
