@@ -58,7 +58,7 @@
   const router = useRouter()
   
   //data
-  // const baseUrl = 'https://partybox.local'
+  // const baseUrl = 'http://partybox.local'
   const baseUrl = 'https://cms.partybox.com.pe'
   const form = ref()
   const loading = ref(false)
@@ -114,7 +114,9 @@
       body: formData,
     })
     const j = await res.json()
+    console.log(j)
     loading.value = false
+    return
     if ([200, 201].includes(res.status)) {
       localStorage.setItem('participant', JSON.stringify(j))
       router.push({ name: 'verano-danger-ruleta' })
