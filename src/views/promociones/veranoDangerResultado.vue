@@ -1,10 +1,10 @@
 <template>
   <section class="min-h-screen bg-black">
     <div class="relative grid">
-      <picture class="absolute col-start-1 col-end-2 row-start-1 row-end-2">
+      <picture class="col-start-1 col-end-2 row-start-1 row-end-2">
         <source media="(min-width: 1200px)" srcset="../../assets/promociones/1200-fondo-datos.webp">
         <source media="(min-width: 768px)" srcset="../../assets/promociones/768-fondo-datos.webp">
-        <img class="w-full max-w-3xl mx-auto" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
+        <img class="absolute w-full max-w-3xl -translate-x-1/2 left-1/2" src="../../assets/promociones/576-fondo-datos.webp" alt="promo verano danger" />
       </picture>
       <div
         class="z-10 flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-2 gap-4 py-4"
@@ -14,7 +14,7 @@
         <img v-else-if="reward == 2" class="max-w-xs" src="../../assets/promociones/ganaste-pb.svg" alt="ganaste pb" />
         <img v-else class="max-w-xs" src="../../assets/promociones/vd-sigue-participando.svg" alt="ganaste pb" />
         <img v-if="reward == 1" class="max-w-xs" src="../../assets/promociones/COOLER-CON-LUCES-Y-SOMBRAS.png" alt="cooler verano danger" />
-        <img v-else-if="reward == 2" src="../../assets/promociones/vd-cajas.webp" alt="cajas partybox verano danger" />
+        <img v-else-if="reward == 2" class="max-w-xs" src="../../assets/promociones/3-LEMON-DANGER.webp" alt="caja partybox verano danger" />
       </div>
     </div>
     <div class="container z-10 flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-2 gap-8 px-2 mx-auto lg:px-0">
@@ -33,28 +33,30 @@ const props = defineProps({
 const { index } = props
 
 // data
-const baseUrl = 'https://cms.partybox.com.pe'
-// const baseUrl = 'https://partybox.local'
+// const baseUrl = 'https://cms.partybox.com.pe'
+const baseUrl = 'https://partybox.local'
 const reward = Number.parseInt(index)
 
 // methods
-const getCode = async () => {
-  const data = localStorage.getItem('participant')
-  const participant = JSON.parse(data)
+const getCode = async participant => {
   const formData = new FormData()
   formData.append('participant', participant.id)
   formData.append('reward', reward === 1 ? 'pc' : 'pb' )
+  localStorage.removeItem('participant')
   const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/code`, {
     method: 'POST',
     body: formData
   })
 
   const j = await res.json()
-  localStorage.removeItem('participant')
 }
 
 // created
 if ([1, 2].includes(reward)) {
-  getCode()
+  const data = localStorage.getItem('participant')
+  const participant = JSON.parse(data)
+  if (participant) getCode(participant)
+} else {
+  localStorage.removeItem('participant')
 }
 </script>
