@@ -53,7 +53,7 @@ const getCode = async () => {
 }
 
 // created
-// if ([1, 2].includes(reward)) {
-//   getCode()
-// }
+if ([1, 2].includes(reward)) {
+  getCode()
+}
 </script>
