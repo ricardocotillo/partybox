@@ -72,18 +72,28 @@
 
   const submit = async () => {
     loading.value = true
+    const fullName = form.value.full_name.value
+    const fnIsLength = fullName.split(' ').length >= 2
     const dni = form.value.dni.value
     const dniIsNumeric = validator.isNumeric(dni)
     const dniIsLength = validator.isLength(dni, {min: 8, max: 8})
 
+    if (!fnIsLength) {
+      loading.value = false
+      toast.warn('Por favor, ingresa tu nombre y apellido')
+    }
+
     if (!dniIsNumeric) {
       loading.value = false
-      return toast.warn('Por favor ingrese un número de DNI válido')
+      toast.warn('Por favor ingrese un número de DNI válido')
     }
+    
     if (!dniIsLength) {
       loading.value = false
-      return toast.warn('El número de DNI debe ser de exactamente 8 dígitos')
+      toast.warn('El número de DNI debe ser de exactamente 8 dígitos')
     }
+
+    if (!fnIsLength || !dniIsNumeric || !dniIsLength) return
   
     const formData = new FormData(form.value)
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
