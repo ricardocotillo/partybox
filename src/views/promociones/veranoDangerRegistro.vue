@@ -30,7 +30,7 @@
           <label class="flex-shrink-0 text-white" for="email">Email:</label>
           <input required type="email" name="email" id="email" class="w-full px-2 py-1 leading-3 rounded-md flex-grow-1 focus:border-verano-danger focus:outline-none focus:ring-verano-danger" />
         </div>
-        <FileInput required name="receipt" id="receipt" btnClass="font-bold uppercase rounded-sm bg-verano-danger" />
+        <FileInput v-model="file" required name="receipt" id="receipt" btnClass="font-bold uppercase rounded-sm bg-verano-danger" />
         <div class="flex flex-col items-start gap-4">
           <label for="terms" class="text-white">
             <Checkbox required id="terms" class="mr-4 rounded-md border-verano-danger hover:checked:border-verano-danger checked:border-verano-danger" />
@@ -62,6 +62,7 @@
   const baseUrl = 'https://cms.partybox.com.pe'
   const form = ref()
   const loading = ref(false)
+  const file = ref(null)
 
   // methods
   const validate = () => {
@@ -94,8 +95,9 @@
     }
 
     if (!fnIsLength || !dniIsNumeric || !dniIsLength) return
-  
     const formData = new FormData(form.value)
+    formData.delete('receipt')
+    formData.append('receipt', file.value, file.value.name)
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
       body: formData,
