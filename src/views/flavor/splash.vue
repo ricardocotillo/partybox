@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 // router
@@ -32,13 +32,25 @@ const router = useRouter()
 const open = ref(true)
 
 // methods
+const toRoulette = () => setTimeout(() => router.push({name: 'flavor-roulette'}), 1000)
 const close = () => {
   open.value = false
-  setTimeout(() => router.push({name: 'flavor-roulette'}), 1000)
+  toRoulette()
 }
 
 const redirect = () => {
+  open.value = false
   router.push({name: 'verano-danger'})
 }
+
+// on mounted
+onMounted(() => {
+  setTimeout(() => {
+    if (open.value) {
+      open.value = false
+      toRoulette()
+    }
+  }, 5000)
+})
 </script>
 <style></style>
