@@ -54,6 +54,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import useRoulette from '../../common/roulette'
 import Number from './number.vue'
 import Castigo from './castigo.vue'
