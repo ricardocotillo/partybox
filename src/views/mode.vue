@@ -7,10 +7,18 @@
     <img @click="click('tranki')" v-show="!mode || mode == 'hot'" class="w-1/2 cursor-pointer md:w-1/6" :src="trankiInactivoSrc" alt="tranki" />
     <img @click="click('tranki')" v-show="mode == 'tranki'" class="w-1/2 cursor-pointer md:w-1/6" src="../assets/mode/BOTON_ACTIVO_TRANKI.svg" alt="tranki" />
   </div>
+  <!-- delete this popup once promo verano danger ends -->
+  <div v-if="open" class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50">
+    <div class="relative max-w-xs md:max-w-md">
+      <button @click="close" class="absolute top-0 h-8 right-2 w-18"></button>
+      <img src="../assets/promociones/popup-veranodanger.jpg" alt="banner promo verano danger" />
+      <button @click="redirect" class="absolute w-3/4 h-20 -translate-x-1/2 bottom-16 left-1/2 bg-opacity-30"></button>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
@@ -25,6 +33,28 @@ const click = (m) => {
   mode.value = m
   setTimeout(() => router.push('roulette'), 500)
 }
+
+// delete this after promo ends
+const open = ref(true)
+
+
+const close = () => {
+  open.value = false
+}
+
+const redirect = () => {
+  open.value = false
+  router.push({name: 'verano-danger'})
+}
+
+onMounted(() => {
+  setTimeout(() => {
+    if (open.value) {
+      open.value = false
+    }
+  }, 5000)
+})
+// promo end
 </script>
 
 <style>
