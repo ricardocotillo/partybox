@@ -30,8 +30,8 @@
   import { useRouter } from 'vue-router'
 
   // data
-  // const baseUrl = 'https://cms.partybox.com.pe'
-  const baseUrl = 'https://partybox.local'
+  const baseUrl = 'https://cms.partybox.com.pe'
+  // const baseUrl = 'https://partybox.local'
   const loading = ref(true)
   const slots = ref([3])
   const angle = ref(0)

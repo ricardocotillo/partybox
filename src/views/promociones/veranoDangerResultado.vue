@@ -33,8 +33,8 @@ const props = defineProps({
 const { index } = props
 
 // data
-// const baseUrl = 'https://cms.partybox.com.pe'
-const baseUrl = 'https://partybox.local'
+const baseUrl = 'https://cms.partybox.com.pe'
+// const baseUrl = 'https://partybox.local'
 const reward = Number.parseInt(index)
 
 // methods

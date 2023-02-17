@@ -58,8 +58,8 @@
   const router = useRouter()
   
   //data
-  const baseUrl = 'http://partybox.local'
-  // const baseUrl = 'https://cms.partybox.com.pe'
+  // const baseUrl = 'http://partybox.local'
+  const baseUrl = 'https://cms.partybox.com.pe'
   const form = ref()
   const loading = ref(false)
   const file = ref(null)
