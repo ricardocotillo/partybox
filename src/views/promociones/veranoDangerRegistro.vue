@@ -41,7 +41,10 @@
             Acepto el uso del tratamiento de datos personales
           </label>
         </div>
-        <button :disabled="loading" @click="validate" class="px-4 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">Regístrate</button>
+        <button :disabled="loading" @click="validate" class="relative px-6 py-1 mt-10 font-bold uppercase rounded-sm bg-verano-danger" type="submit">
+          <i v-if="loading" class="absolute las la-circle-notch left-1 top-1/4 la-spin"></i>
+          Regístrate
+        </button>
       </form>
     </div>
     <div class="h-28"></div>
@@ -106,6 +109,8 @@
       loading.value = false
       return
     }
+
+    toast.info('Estamos procesando tu información.', {autoClose: 6000})
     const formData = new FormData(form.value)
     const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
       method: 'POST',
