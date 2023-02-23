@@ -26,6 +26,7 @@
   </section>
 </template>
 <script setup>
+import { event } from 'vue-gtag'
 // props
 const props = defineProps({
   index: String,
@@ -59,4 +60,9 @@ if ([1, 2].includes(reward)) {
 } else {
   localStorage.removeItem('participant')
 }
+event('resultado_verano_danger', {
+  event_category: 'resultado',
+  event_label: 'resultado_verano_danger',
+  value: reward,
+})
 </script>

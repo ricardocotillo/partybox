@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
+import { pageview } from 'vue-gtag'
 import Splash from '../views/splash.vue'
 import Roulette from '../views/roulette.vue'
 import Mode from '../views/mode.vue'
@@ -89,5 +90,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+//   pageview(to.fullPath)
+//   next()
+// })
 
 export default router;

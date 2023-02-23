@@ -51,80 +51,83 @@
   </section>
 </template>
 <script setup>
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { toast } from 'vue3-toastify'
-  import validator from 'validator'
-  import Checkbox from '../../components/checkbox.vue'
-  import FileInput from '../../components/fileInput.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify'
+import validator from 'validator'
+import { event, pageview } from 'vue-gtag'
+import Checkbox from '../../components/checkbox.vue'
+import FileInput from '../../components/fileInput.vue'
 
-  const router = useRouter()
-  
-  //data
-  // const baseUrl = 'http://partybox.local'
-  const baseUrl = 'https://cms.partybox.com.pe'
-  const form = ref()
-  const loading = ref(false)
-  const file = ref(null)
+const router = useRouter()
 
-  // methods
-  const validate = () => {
-    if (!form.value.receipt.value) {
-      toast.warn('Por favor adjunta una boleta', {autoClose: 1000})
-    }
+//data
+// const baseUrl = 'http://partybox.local'
+const baseUrl = 'https://cms.partybox.com.pe'
+const form = ref()
+const loading = ref(false)
+const file = ref(null)
+
+// methods
+const validate = () => {
+  if (!form.value.receipt.value) {
+    toast.warn('Por favor adjunta una boleta', {autoClose: 1000})
+  }
+}
+
+const submit = async () => {
+  loading.value = true
+  const fullName = form.value.full_name.value
+  const dni = form.value.dni.value
+  const phone = form.value.phone.value
+  const fnIsLength = fullName.split(' ').length >= 2
+  const dniIsNumeric = validator.isNumeric(dni)
+  const dniIsLength = validator.isLength(dni, {min: 8, max: 8})
+  const phoneIsNumeric = validator.isNumeric(phone)
+  const phoneIsLength = validator.isLength(phone, {min: 9, max:9})
+
+  if (!fnIsLength) {
+    toast.warn('Por favor, ingresa tu nombre y apellido')
   }
 
-  const submit = async () => {
-    loading.value = true
-    const fullName = form.value.full_name.value
-    const dni = form.value.dni.value
-    const phone = form.value.phone.value
-    const fnIsLength = fullName.split(' ').length >= 2
-    const dniIsNumeric = validator.isNumeric(dni)
-    const dniIsLength = validator.isLength(dni, {min: 8, max: 8})
-    const phoneIsNumeric = validator.isNumeric(phone)
-    const phoneIsLength = validator.isLength(phone, {min: 9, max:9})
+  if (!dniIsNumeric) {
+    toast.warn('Por favor, ingrese un número de DNI válido')
+  }
+  
+  if (!dniIsLength) {
+    toast.warn('El número de DNI debe ser de exactamente 8 dígitos')
+  }
 
-    if (!fnIsLength) {
-      toast.warn('Por favor, ingresa tu nombre y apellido')
-    }
+  if (!phoneIsNumeric) {
+    toast.warn('Por favor, ingrese un celular válido. Todos los caracteres deben ser númericos.')
+  }
 
-    if (!dniIsNumeric) {
-      toast.warn('Por favor, ingrese un número de DNI válido')
-    }
-    
-    if (!dniIsLength) {
-      toast.warn('El número de DNI debe ser de exactamente 8 dígitos')
-    }
+  if (!phoneIsLength) {
+    toast.warn('El número de celular debe ser de exactamente 9 dígitos')
+  }
 
-    if (!phoneIsNumeric) {
-      toast.warn('Por favor, ingrese un celular válido. Todos los caracteres deben ser númericos.')
-    }
-
-    if (!phoneIsLength) {
-      toast.warn('El número de celular debe ser de exactamente 9 dígitos')
-    }
-
-    if (!fnIsLength || !dniIsNumeric || !dniIsLength || !phoneIsNumeric || !phoneIsLength) {
-      loading.value = false
-      return
-    }
-
-    toast.info('Estamos procesando tu información.', {autoClose: 6000})
-    const formData = new FormData(form.value)
-    const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
-      method: 'POST',
-      body: formData,
-    })
-    const j = await res.json()
+  if (!fnIsLength || !dniIsNumeric || !dniIsLength || !phoneIsNumeric || !phoneIsLength) {
     loading.value = false
-    if ([200, 201].includes(res.status)) {
-      localStorage.setItem('participant', JSON.stringify(j))
-      router.push({ name: 'verano-danger-ruleta' })
-    } else {
-      console.log(j)
-    }
+    return
   }
-  
+
+  toast.info('Estamos procesando tu información.', {autoClose: 6000})
+  const formData = new FormData(form.value)
+  const res = await fetch(`${baseUrl}/wp-json/promo/verano-danger/participants`, {
+    method: 'POST',
+    body: formData,
+  })
+  const j = await res.json()
+  loading.value = false
+  if ([200, 201].includes(res.status)) {
+    localStorage.setItem('participant', JSON.stringify(j))
+    event('registro_verano_danger', {
+      event_category: 'formulario',
+      event_label: 'registro_verano_danger'
+    })
+    router.push({ name: 'verano-danger-ruleta' })
+  } else {
+    console.log(j)
+  }
+}
 </script>
-<style></style>
