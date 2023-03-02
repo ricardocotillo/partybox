@@ -22,6 +22,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { event } from 'vue-gtag'
 
 // router
 const router = useRouter()
@@ -34,11 +35,19 @@ const open = ref(true)
 // methods
 const toRoulette = () => setTimeout(() => router.push({name: 'flavor-roulette'}), 1000)
 const close = () => {
+  event('close_popup_verano_danger', {
+    event_category: 'click',
+    event_label: 'close_popup_verano_danger'
+  })
   open.value = false
   toRoulette()
 }
 
 const redirect = () => {
+  event('click_popup_verano_danger', {
+    event_category: 'click',
+    event_label: 'click_popup_verano_danger'
+  })
   open.value = false
   router.push({name: 'verano-danger'})
 }

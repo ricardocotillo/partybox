@@ -20,6 +20,7 @@
 <script setup>
 import { computed, inject, ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { event } from 'vue-gtag'
 
 const router = useRouter()
 const route = useRoute()
@@ -39,10 +40,18 @@ const open = ref(true)
 
 
 const close = () => {
+  event('close_popup_verano_danger', {
+    event_category: 'click',
+    event_label: 'close_popup_verano_danger'
+  })
   open.value = false
 }
 
 const redirect = () => {
+  event('click_popup_verano_danger', {
+    event_category: 'click',
+    event_label: 'click_popup_verano_danger'
+  })
   open.value = false
   router.push({name: 'verano-danger'})
 }
