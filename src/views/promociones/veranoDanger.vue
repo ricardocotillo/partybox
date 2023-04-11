@@ -26,4 +26,7 @@ const isAdult = e => {
   const form = e.target
   if (form.age.checked) router.push({name: 'verano-danger-registro'})
 }
+
+// created
+router.push('/')
 </script>

@@ -59,29 +59,29 @@ const routes = [
         name: 'verano-danger-registro',
         component: VeranoDangerRegistro
       },
-      {
-        path: 'verano-danger/terminos/',
-        name: 'verano-danger-terminos',
-        component: VeranoDangerTerminos,
-      },
-      {
-        path: 'verano-danger/ruleta/',
-        name: 'verano-danger-ruleta',
-        component: VeranoDangerRuleta,
-        props: true,
-      },
-      {
-        path: 'verano-danger/resultado/:index/',
-        name: 'verano-danger-resultado',
-        component: VeranoDangerResultado,
-        props: true,
-      },
-      {
-        path: 'verano-danger/revisa/:index/',
-        name: 'verano-danger-revisa',
-        component: VeranoDangerRevisa,
-        props: true,
-      }
+      // {
+      //   path: 'verano-danger/terminos/',
+      //   name: 'verano-danger-terminos',
+      //   component: VeranoDangerTerminos,
+      // },
+      // {
+      //   path: 'verano-danger/ruleta/',
+      //   name: 'verano-danger-ruleta',
+      //   component: VeranoDangerRuleta,
+      //   props: true,
+      // },
+      // {
+      //   path: 'verano-danger/resultado/:index/',
+      //   name: 'verano-danger-resultado',
+      //   component: VeranoDangerResultado,
+      //   props: true,
+      // },
+      // {
+      //   path: 'verano-danger/revisa/:index/',
+      //   name: 'verano-danger-revisa',
+      //   component: VeranoDangerRevisa,
+      //   props: true,
+      // }
     ]
   }
 ];

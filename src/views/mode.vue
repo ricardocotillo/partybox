@@ -36,7 +36,7 @@ const click = (m) => {
 }
 
 // delete this after promo ends
-const open = ref(true)
+const open = ref(false)
 
 
 const close = () => {

@@ -30,7 +30,7 @@ const router = useRouter()
 
 // Delete everythin after this line once promo verano danger ends
 // data
-const open = ref(true)
+const open = ref(false)
 
 // methods
 const toRoulette = () => setTimeout(() => router.push({name: 'flavor-roulette'}), 1000)

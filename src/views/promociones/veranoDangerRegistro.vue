@@ -68,6 +68,9 @@ const form = ref()
 const loading = ref(false)
 const file = ref(null)
 
+// created
+router.push('/')
+
 // methods
 const validate = () => {
   if (!form.value.receipt.value) {
