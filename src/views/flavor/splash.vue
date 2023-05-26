@@ -26,7 +26,7 @@ import { event } from 'vue-gtag'
 
 // router
 const router = useRouter()
-// setTimeout(() => router.push({name: 'flavor-roulette'}), 3000)
+setTimeout(() => router.push({name: 'flavor-roulette'}), 3000)
 
 // Delete everythin after this line once promo verano danger ends
 // data
