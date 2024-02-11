@@ -7,9 +7,9 @@
         Playlist
         <img src="../assets/spotify.svg" alt="spotify logo" />
       </a>
-      <a href="#" class="bg-danger-negro text-white font-extrabold uppercase text-2xl flex gap-3 justify-center py-6 px-5 w-70">
+      <router-link to="/lata-mode/" class="bg-danger-negro text-white font-extrabold uppercase text-2xl flex gap-3 justify-center py-6 px-5 w-70">
         Zona de juegos
-      </a>
+      </router-link>
     </div>
     <img class="mx-auto" src="../assets/jarra_bomba.svg" alt="jarra y bomba" />
   </main>

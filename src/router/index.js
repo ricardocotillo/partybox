@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import Date from '../views/date.vue'
 import Links from '../views/links.vue'
+import LataMode from '../views/flavor/lata/mode.vue'
 import Splash from '../views/splash.vue'
 import Roulette from '../views/roulette.vue'
 import Mode from '../views/mode.vue'
@@ -30,6 +31,11 @@ const routes = [
     path: '/mode/',
     name: 'mode',
     component: Mode,
+  },
+  {
+    path: '/lata-mode/',
+    name: 'lata-mode',
+    component: LataMode,
   },
   {
     path: '/mode/:flavor',
