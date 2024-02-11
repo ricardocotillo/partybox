@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import Links from '../views/links.vue'
+import Date from '../views/date.vue'
 import Splash from '../views/splash.vue'
 import Roulette from '../views/roulette.vue'
 import Mode from '../views/mode.vue'
@@ -16,9 +16,9 @@ const routes = [
     component: Splash,
   },
   {
-    path: '/links/',
-    name: 'links',
-    component: Links,
+    path: '/date/',
+    name: 'date',
+    component: Date,
   },
   {
     path: '/mode/',
