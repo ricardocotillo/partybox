@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import { pageview } from 'vue-gtag'
+import Links from '../views/links.vue'
 import Splash from '../views/splash.vue'
 import Roulette from '../views/roulette.vue'
 import Mode from '../views/mode.vue'
@@ -8,16 +8,17 @@ import FlavorSplash from '../views/flavor/splash.vue'
 import FlavorMode from '../views/flavor/mode.vue'
 import VeranoDanger from '../views/promociones/veranoDanger.vue'
 import VeranoDangerRegistro from '../views/promociones/veranoDangerRegistro.vue'
-import VeranoDangerRuleta from '../views/promociones/veranoDangerRuleta.vue'
-import VeranoDangerResultado from '../views/promociones/veranoDangerResultado.vue'
-import VeranoDangerRevisa from '../views/promociones/veranoDangerRevisa.vue'
-import VeranoDangerTerminos from '../views/promociones/veranoDangerTerminos.vue'
 
 const routes = [
   {
     path: '/',
     name: "splash",
     component: Splash,
+  },
+  {
+    path: '/links/',
+    name: 'links',
+    component: Links,
   },
   {
     path: '/mode/',

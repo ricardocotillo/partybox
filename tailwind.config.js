@@ -13,7 +13,7 @@ module.exports = {
         18: '4.5rem',
         70: '17.5rem',
         81: '20.25rem',
-        82: '20.50.rem',
+        82: '20.50rem',
         97: '24.25rem',
         98: '24.50rem',
         99: '24.75rem',
@@ -56,10 +56,14 @@ module.exports = {
         'naranja-light': '#ff7c00',
         naranja: '#ff4b2f',
         rosado: '#f54359',
+        'danger-amarillo': '#FFCE33',
+        'danger-negro': '#030404',
+        'danger-rosado': '#DD4C97',
       },
       fontFamily: {
         watermelon: 'Watermelon',
         'trash-hand': 'Trashhand',
+        'bricolage-grotesque': 'Bricolage Grotesque'
       },
       screens: {
         'short': { raw: '(min-height: 668px)' },
