@@ -15,6 +15,7 @@ module.exports = {
         70: '17.5rem',
         81: '20.25rem',
         82: '20.50rem',
+        83: '20.75rem',
         97: '24.25rem',
         98: '24.50rem',
         99: '24.75rem',
@@ -44,6 +45,7 @@ module.exports = {
         20: '5rem',
       },
       borderWidth: {
+        6: '6px',
         25: '25px',
         75: '75px',
         100: '100px',
