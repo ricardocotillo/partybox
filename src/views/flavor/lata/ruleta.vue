@@ -10,7 +10,7 @@
     <img class="mx-auto" :src="planAsset" alt="plan hot" />
     <div class="-mt-4 w-83 h-83 mx-auto relative mb-6">
       <div v-if="showDare" class="w-83 h-83 rounded-full bg-danger-rosado bg-opacity-95 border-6 border-danger-negro absolute z-20 flex justify-center items-center text-center text-3xl font-bricolage-grotesque uppercase font-extrabold">
-        <p class="mx-12">Mándale una foto de tu actual a tu ex y bórralo</p>
+        <p class="mx-12">{{ text }}</p>
       </div>
       <img @click="spin" class="absolute top-28 left-1/2 -translate-x-1/2 z-10" src="../../../assets/lata/boton.svg" alt="boton girar" />
       <img
@@ -33,17 +33,20 @@
   </main>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import useRoulette from '../../../common/roulette'
-import { slots } from '../../../common'
+import { slots, hot, tranqui } from '../../../common'
 
 const route = useRoute()
 const roulette = ref()
+const dares = route.params.mode == 'hot' ? hot : tranqui
 const rouletteAsset = new URL(`../../../assets/lata/ruleta_${route.params.mode}.svg`, import.meta.url)
 const planAsset = new URL(`../../../assets/lata/plan_${route.params.mode}.svg`, import.meta.url)
 
 const { rotating, angle, spin, showDare, dare, showContent, } = useRoulette( roulette, slots )
+const text = computed(() => dare.value ? dares[dare.value - 1] : null)
+
 const restart = () => {
   showDare.value = false
 }
