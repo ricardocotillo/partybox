@@ -12,6 +12,16 @@ import FlavorMode from '../views/flavor/mode.vue'
 import VeranoDanger from '../views/promociones/veranoDanger.vue'
 import VeranoDangerRegistro from '../views/promociones/veranoDangerRegistro.vue'
 
+function checkCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) {
+      return match[2];
+  }
+  else {
+      return null;
+  }
+}
+
 const routes = [
   {
     path: '/',
@@ -108,11 +118,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-// router.beforeEach((to, from, next) => {
-//   pageview(to.fullPath)
-//   next()
-// })
+router.beforeEach((to, from) => {
+  const ok = checkCookie('over18')
+  if (['lata-ruleta', 'lata-mode'].includes(to.name) && !ok) {
+    return { name: 'date' }
+  }
+})
 
-export default router;
+export default router

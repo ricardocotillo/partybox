@@ -14,5 +14,5 @@
     <img class="mx-auto" src="../assets/lata/jarra_bomba.svg" alt="jarra y bomba" />
   </main>
 </template>
-<script>
+<script setup>
 </script>
