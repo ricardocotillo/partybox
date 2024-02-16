@@ -7,9 +7,9 @@
       <h3 class="font-bricolage-grotesque text-2xl font-extrabold uppercase w-82 block mx-auto text-center -mt-2 mb-6">¡Bienvenido!<br>ingresa tu fecha de nacimiento</h3>
     </div>
     <form @submit.prevent="validate" class="grid gap-2 gap-y-4 grid-cols-3 mb-14 justify-center w-80 mx-auto">
-      <input class="w-full placeholder:text-white py-6 px-5 font-extrabold text-center text-2xl uppercase bg-danger-negro text-white" placeholder="DD" @change="formatDay" type="text" v-maska data-maska="##" v-model="day" name="day">
-      <input class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="MM" @change="formatMonth" type="text" name="month" v-maska data-maska="##" v-model="month">
-      <input class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="AA" type="text" name="year" v-model="year" v-maska data-maska="##">
+      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-center text-2xl uppercase bg-danger-negro text-white" placeholder="DD" @change="formatDay" type="text" v-maska data-maska="##" v-model="day" name="day">
+      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="MM" @change="formatMonth" type="text" name="month" v-maska data-maska="##" v-model="month">
+      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="AA" type="text" name="year" v-model="year" v-maska data-maska="##">
       <button class="bg-danger-negro text-white font-extrabold uppercase text-xl flex gap-3 items-center justify-center py-2 px-4 w-full col-start-1 col-span-3">
         <i class="las la-save text-2xl"></i>
         Guardar
@@ -60,8 +60,18 @@ const formatMonth = e => {
 const validate = e => {
   const day = e.target.day.value
   const month = e.target.month.value
-  const year = e.target.year.value
-  console.log('hereeee')
-  router.push({ name: 'links' })
+  let year = e.target.year.value
+  if (year >= 40) {
+    year = Number(`19${year}`)
+  } else {
+    year = Number(`20${year}`)
+  }
+  const currentDate = new Date()
+  const thenDate = new Date(`${year + 18}-${month}-${day}`)
+  const ok = thenDate.getTime() < currentDate.getTime()
+  if (ok) {
+    document.cookie = 'over18=true'
+    router.push({ name: 'lata-mode' })
+  }
 }
 </script>
