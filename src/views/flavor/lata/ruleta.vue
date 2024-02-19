@@ -1,7 +1,7 @@
 <template>
   <main class="bg-danger-amarillo py-8 h-dvh overflow-y-auto">
     <div class="mx-4 flex justify-between items-center mb-4">
-      <button>
+      <button @click="goBack">
         <img src="../../../assets/lata/back.svg" alt="back button" />
       </button>
       <img class="w-22" src="../../../assets/new_logo.svg" alt="logo partybox" />
@@ -34,11 +34,12 @@
 </template>
 <script setup>
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import useRoulette from '../../../common/roulette'
 import { slots, hot, tranqui } from '../../../common'
 
 const route = useRoute()
+const router = useRouter()
 const roulette = ref()
 const dares = route.params.mode == 'hot' ? hot : tranqui
 const rouletteAsset = new URL(`../../../assets/lata/ruleta_${route.params.mode}.svg`, import.meta.url)
@@ -50,4 +51,5 @@ const text = computed(() => dare.value ? dares[dare.value - 1] : null)
 const restart = () => {
   showDare.value = false
 }
+const goBack = () => router.go(-1)
 </script>

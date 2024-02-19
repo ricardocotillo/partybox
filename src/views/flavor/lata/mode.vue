@@ -1,7 +1,7 @@
 <template>
   <main class="bg-danger-amarillo py-8 h-dvh overflow-y-auto">
     <div class="mx-4 flex justify-between items-center mb-4">
-      <button>
+      <button @click="goBack">
         <img src="../../../assets/lata/back.svg" alt="back button" />
       </button>
       <img class="w-22" src="../../../assets/new_logo.svg" alt="logo partybox" />
@@ -24,3 +24,8 @@
     <p class="text-xl text-danger-negro font-light tracking-wider uppercase mx-4 text-center">tomar bebidas alcohólicas en exceso es dañino</p>
   </main>
 </template>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const goBack =  () => router.go(-1)
+</script>
