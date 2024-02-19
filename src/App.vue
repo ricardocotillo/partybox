@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative min-h-screen overflow-hidden min-w-screen"
+    class="relative min-h-dvh overflow-hidden min-w-screen"
     :style= "bg"
   >
     <div
