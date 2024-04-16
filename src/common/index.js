@@ -67,7 +67,7 @@ export const tranqui = [
   'Grita SUUUU y súbelo a las redes',
   'Escoge un amig@ y dale un trago',
   'Improvisa y rapea para tus amigos',
-  'Toma 1 seco si alguna vez atoraste un baño ageno', 
+  'Toma 1 seco si alguna vez atoraste un baño ajeno', 
   'Llama a tu amiga, si no te contesta acabas de perder 10 soles',
   'Párate de manos contra la pared',
   '¡Te has ganado un apanado!',
