@@ -1,29 +1,29 @@
 <template>
-  <main class="bg-danger-amarillo h-dvh pt-16 pb-6 overflow-y-auto">
+  <main class="pt-16 pb-6 overflow-y-auto bg-danger-amarillo h-dvh">
     <div class="relative">
-      <img class="absolute -top-4 left-1/2 -translate-x-1/2" src="../assets/lata/sparks_2.svg" alt="sparks" />
+      <img class="absolute -translate-x-1/2 -top-4 left-1/2" src="../assets/lata/sparks_2.svg" alt="sparks" />
       <img class="w-48 mx-auto" src="../assets/new_logo.svg" alt="partybox log" />
       <img class="-mt-4" src="../assets/patineta.svg" alt="chico en patineta" />
-      <h3 class="font-bricolage-grotesque text-2xl font-extrabold uppercase w-82 block mx-auto text-center -mt-2 mb-6">¡Bienvenido!<br>ingresa tu fecha de nacimiento</h3>
+      <h3 class="block mx-auto mb-6 -mt-2 text-2xl font-extrabold text-center uppercase font-bricolage-grotesque w-82">¡Bienvenido!<br>ingresa tu fecha de nacimiento</h3>
     </div>
-    <form @submit.prevent="validate" class="grid gap-2 gap-y-4 grid-cols-3 mb-14 justify-center w-80 mx-auto">
-      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-center text-2xl uppercase bg-danger-negro text-white" placeholder="DD" @change="formatDay" type="text" v-maska data-maska="##" v-model="day" name="day">
-      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="MM" @change="formatMonth" type="text" name="month" v-maska data-maska="##" v-model="month">
-      <input required class="w-full placeholder:text-white py-6 px-5 font-extrabold text-2xl uppercase bg-danger-negro text-white text-center" placeholder="AA" type="text" name="year" v-model="year" v-maska data-maska="##">
-      <button class="bg-danger-negro text-white font-extrabold uppercase text-xl flex gap-3 items-center justify-center py-2 px-4 w-full col-start-1 col-span-3">
-        <i class="las la-save text-2xl"></i>
+    <form @submit.prevent="validate" class="grid justify-center grid-cols-3 gap-2 mx-auto gap-y-4 mb-14 w-80">
+      <input required class="w-full px-5 py-6 text-2xl font-extrabold text-center text-white uppercase placeholder:text-white bg-danger-negro" placeholder="DD" @change="formatDay" type="text" v-maska data-maska="##" v-model="day" name="day">
+      <input required class="w-full px-5 py-6 text-2xl font-extrabold text-center text-white uppercase placeholder:text-white bg-danger-negro" placeholder="MM" @change="formatMonth" type="text" name="month" v-maska data-maska="##" v-model="month">
+      <input required class="w-full px-5 py-6 text-2xl font-extrabold text-center text-white uppercase placeholder:text-white bg-danger-negro" placeholder="AA" type="text" name="year" v-model="year" v-maska data-maska="##">
+      <button class="flex items-center justify-center w-full col-span-3 col-start-1 gap-3 px-4 py-2 text-xl font-extrabold text-white uppercase bg-danger-negro">
+        <i class="text-2xl las la-save"></i>
         Guardar
       </button>
     </form>
     <img class="mx-auto mb-8" src="../assets/lata/bomb_and_cat.svg" alt="bomba y gato" />
     <img class="w-full mb-9" src="../assets/nivel_de_alcohol.svg" alt="nivel de alcohol">
-    <p class="text-xl text-danger-negro font-light tracking-wider uppercase mx-4 text-center">tomar bebidas alcohólicas en exceso es dañino</p>
+    <p class="mx-4 text-xl font-light tracking-wider text-center uppercase text-danger-negro">tomar bebidas alcohólicas en exceso es dañino</p>
   </main>
 </template>
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { vMaska } from 'maska'
+import { vMaska } from 'maska/vue'
 const day = ref(null)
 const month = ref(null)
 const year = ref(null)
