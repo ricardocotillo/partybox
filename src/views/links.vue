@@ -15,11 +15,14 @@
   </main>
 </template>
 <script setup>
+import { useRoute } from 'vue-router'
 import { pageview } from 'vue-gtag'
+
+const route = useRoute()
 
 pageview({
     page_title: 'Links',
-    page_location: 'https://partybox.com.pe/links',
-    page_path: '/links',
+    page_location: window.location.href,
+    page_path: route.path,
   })
 </script>
