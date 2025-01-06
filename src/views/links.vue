@@ -21,8 +21,8 @@ import { pageview } from 'vue-gtag'
 const route = useRoute()
 
 pageview({
-    page_title: 'Links',
-    page_location: window.location.href,
-    page_path: route.path,
-  })
+  page_title: 'Links',
+  page_location: window.location.href,
+  page_path: route.path,
+})
 </script>
